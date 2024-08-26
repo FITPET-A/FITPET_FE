@@ -1,4 +1,5 @@
-import './globals.css';
+import Providers from '@utils/Provider';
+import '@styles/globals.css';
 import type { Metadata } from 'next';
 import React from 'react';
 
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-Pretendard">{children}</body>
+      <body className="font-Pretendard">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

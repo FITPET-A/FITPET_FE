@@ -39,5 +39,10 @@
       }
     ],
     "import/no-extraneous-dependencies": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }
