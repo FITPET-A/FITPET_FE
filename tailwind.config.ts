@@ -1,10 +1,11 @@
 import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    '!./node_modules',
   ],
   theme: {
     extend: {
@@ -51,14 +52,14 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['Pretendard', 'sans-serif'],
+        Pretendard: ['Pretendard', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
-        'title-lg': ['24px', '150%'], 
+        'title-lg': ['24px', '150%'],
         'title-md': ['22px', '150%'],
-        'title-sm': ['20px', '150%'], 
-        'text-lg': ['18px', '150%'], 
-        'text-md': ['16px', '150%'], 
+        'title-sm': ['20px', '150%'],
+        'text-lg': ['18px', '150%'],
+        'text-md': ['16px', '150%'],
         'text-sm': ['14px', '150%'],
       },
       fontWeight: {
