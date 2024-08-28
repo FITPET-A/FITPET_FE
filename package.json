@@ -47,5 +47,10 @@
       "eslint --cache --fix",
       "prettier --cache --write"
     ]
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
   }
 }
