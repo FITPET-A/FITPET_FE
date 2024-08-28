@@ -69,6 +69,9 @@ const config: Config = {
       borderWidth: {
         1: "1px",
       },
+      fontWeight: {
+        regular: "400",
+      },
     },
     screens: {
       desktop: "1080px",
