@@ -53,7 +53,14 @@ const config: Config = {
       },
       fontFamily: {
         pretendard: ["var(--font-pretendard)", ...defaultTheme.fontFamily.sans],
-        paperlogy: ["Paperlogy-Bold", ...defaultTheme.fontFamily.sans],
+        "paperlogy-heading": [
+          "Paperlogy-Bold",
+          ...defaultTheme.fontFamily.sans,
+        ],
+        "paperlogy-title": [
+          "Paperlogy-Medium",
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
       fontSize: {
         "3xl": ["24px", "150%"],
