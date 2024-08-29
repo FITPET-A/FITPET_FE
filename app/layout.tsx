@@ -3,6 +3,7 @@ import "@styles/globals.css";
 import type { Metadata } from "next";
 import React from "react";
 import Header from "@components/Header";
+import Footer from "@components/Footer";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
@@ -28,6 +29,9 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
+          {/* 임시로 지정한 가운데 영역 */}
+          <div className="h-[500px] bg-white" />
+          <Footer />
         </Providers>
       </body>
     </html>
