@@ -5,7 +5,7 @@ function Footer() {
     <footer className="flex justify-center bg-grayscale-100 text-md">
       <div className="flex w-[1080px] flex-col">
         {/* 이용약관 및 개인정보처리방침 */}
-        <div className="gab-6 mt-8 flex space-x-6 font-semibold text-grayscale-00">
+        <div className="mt-8 flex gap-6 font-semibold text-grayscale-00">
           <button type="button">이용약관</button>
           <button type="button">개인정보처리방침</button>
         </div>
