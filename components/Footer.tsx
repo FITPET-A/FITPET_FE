@@ -2,14 +2,12 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="mt-8 flex justify-center bg-grayscale-100 text-md">
+    <footer className="flex justify-center bg-grayscale-100 text-md">
       <div className="flex w-[1080px] flex-col">
         {/* 이용약관 및 개인정보처리방침 */}
-        <div className="gab-6 mt-8 flex">
-          <div className="flex space-x-6 font-semibold text-grayscale-00">
-            <p>이용약관</p>
-            <p>개인정보처리방침</p>
-          </div>
+        <div className="gab-6 mt-8 flex space-x-6 font-semibold text-grayscale-00">
+          <button type="button">이용약관</button>
+          <button type="button">개인정보처리방침</button>
         </div>
 
         {/* 회사 정보 */}
