@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const menuItems = [
-  { href: ROUTES.QUICK_QUOTE, label: "간편 견적 받기" },
+  { href: ROUTES.HOME, label: "간편 견적 받기" },
   { href: ROUTES.LIFESTYLE, label: "반려생활" },
   { href: ROUTES.FAQ, label: "자주 묻는 질문" },
   { href: ROUTES.PARTNERSHIP, label: "제휴 제안" },
