@@ -2,8 +2,8 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="flex justify-center bg-grayscale-100 text-md">
-      <div className="flex w-[1080px] flex-col">
+    <footer className="flex justify-center bg-grayscale-100 px-4 text-md desktop:px-6">
+      <div className="flex flex-col desktop:w-[1080px]">
         {/* 이용약관 및 개인정보처리방침 */}
         <div className="mt-8 flex gap-6 font-semibold text-grayscale-00">
           <button type="button">이용약관</button>
@@ -11,7 +11,7 @@ function Footer() {
         </div>
 
         {/* 회사 정보 */}
-        <div className="mt-6 flex flex-col gap-1 font-regular text-grayscale-40">
+        <div className="mt-6 flex flex-col gap-1 text-sm font-regular text-grayscale-40 desktop:text-md">
           <p>
             스마트커버 인슈어런스(주) | 사업자 등록번호: 704-86-02268 |
             서울특별시 강남구 테헤란로 107길 6 B1
@@ -28,7 +28,7 @@ function Footer() {
         {/* 연락처 */}
         <div className="mt-8 flex flex-col gap-2 text-grayscale-40">
           <p className="font-bold">Contact us</p>
-          <p className="font-regular">
+          <p className="text-sm font-regular desktop:text-md">
             010-5748-1800 (월-금: 9am-6pm) | contact@smartcoverins.co.kr
           </p>
         </div>
@@ -36,7 +36,7 @@ function Footer() {
         {/* 필수 안내 사항 */}
         <div className="mb-16 mt-8 flex flex-col gap-2 text-grayscale-60">
           <p className="font-semibold">필수 안내 사항</p>
-          <div className="font-regular">
+          <div className="text-sm font-regular desktop:text-md">
             <p>
               보험대리점: 스마트커버 인슈어런스(주) 협회등록번호: 제203120029호
               본 광고는 광고심의기준을 준수하였으며, 유효기간은 심의일로부터

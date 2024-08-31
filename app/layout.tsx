@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${pretendard.variable}`}>
-      <body className="min-w-[1080px] font-pretendard font-medium">
+      <body className="min-w-[390px] font-pretendard font-medium desktop:min-w-[1080px]">
         <Providers>
           <Header />
           {children}
