@@ -6,7 +6,13 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex h-[400px] justify-center bg-primary-50">
+    <main
+      className="flex justify-center"
+      style={{
+        background:
+          "linear-gradient(to bottom, #008CFF 484px, transparent 484px)",
+      }}
+    >
       <div className="w-[1080px]">{children}</div>
     </main>
   );
