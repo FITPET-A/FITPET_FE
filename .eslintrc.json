@@ -38,7 +38,13 @@
         "tsx": "never"
       }
     ],
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "some": ["nesting", "id"]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

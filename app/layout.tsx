@@ -1,4 +1,4 @@
-import Providers from "@utils/Provider";
+import Providers from "@utils/Providers";
 import "@styles/globals.css";
 import type { Metadata } from "next";
 import React from "react";
@@ -25,12 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${pretendard.variable}`}>
-      <body className="font-pretendard font-medium">
+      <body className="min-w-[1080px] font-pretendard font-medium">
         <Providers>
           <Header />
           {children}
           {/* 임시로 지정한 가운데 영역 */}
-          <div className="h-[500px] bg-white" />
+          <div className="h-[700px] bg-white" />
           <Footer />
         </Providers>
       </body>
