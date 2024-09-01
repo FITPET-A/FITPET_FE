@@ -29,8 +29,6 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
-          {/* 임시로 지정한 가운데 영역 */}
-          <div className="h-[700px] bg-white" />
           <Footer />
         </Providers>
       </body>
