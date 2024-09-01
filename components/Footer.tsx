@@ -1,13 +1,14 @@
-import React from "react";
+import ROUTES from "@constants/path";
+import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="flex justify-center bg-grayscale-100 px-4 text-md desktop:px-6">
+    <footer className="flex justify-center bg-grayscale-100 px-4 text-md desktop:h-[448px] desktop:px-6">
       <div className="flex flex-col desktop:w-[1080px]">
         {/* 이용약관 및 개인정보처리방침 */}
         <div className="mt-8 flex gap-6 font-semibold text-grayscale-00">
-          <button type="button">이용약관</button>
-          <button type="button">개인정보처리방침</button>
+          <Link href={ROUTES.TERMS}>이용약관</Link>
+          <Link href={ROUTES.PRIVACY}>개인정보처리방침</Link>
         </div>
 
         {/* 회사 정보 */}
