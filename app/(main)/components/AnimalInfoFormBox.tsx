@@ -4,12 +4,12 @@ import { useState } from "react";
 import { Checkbox } from "@chakra-ui/react";
 import { RightArrowIcon } from "@public/svg";
 import { useForm } from "react-hook-form";
-import AnimalButton from "./AnimalButton";
+import RoundButton from "@components/RoundButton";
 import SubmissionPopup from "./SubmissionPopup";
 
 const animals = [
-  { label: "강아지", icon: "🐶", value: "dog" },
-  { label: "고양이", icon: "🐱", value: "cat" },
+  { label: "🐶 강아지", value: "dog" },
+  { label: "🐱 고양이", value: "cat" },
 ];
 
 function AnimalInfoFormBox() {
@@ -51,10 +51,9 @@ function AnimalInfoFormBox() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mt-8 flex space-x-4">
             {animals.map((animal) => (
-              <AnimalButton
+              <RoundButton
                 key={animal.value}
                 label={animal.label}
-                icon={animal.icon}
                 isSelected={selectedAnimal === animal.value}
                 onClick={() => setSelectedAnimal(animal.value)}
               />
