@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
+import RoundButton from "@components/RoundButton";
 import SearchBar from "./components/SearchBar";
 import FAQList from "./components/FAQList";
-import RoundButton from "../../components/RoundButton";
 
 type FAQItem = {
   question: string;
@@ -53,26 +53,22 @@ export default function Home() {
 
   return (
     <div className="mt-8 flex w-[1080px] flex-col px-6">
-      <div className="flex flex-col">
-        <SearchBar />
+      <SearchBar />
 
-        <div className="mt-6 flex space-x-2">
-          {categories.map((category) => (
-            <RoundButton
-              key={category.label}
-              label={category.label}
-              isSelected={selectedCategory === category.label}
-              onClick={() =>
-                setSelectedCategory(
-                  category.label.split(" ")[1] as keyof FAQData,
-                )
-              }
-            />
-          ))}
-        </div>
-
-        <FAQList faqs={faqsData[selectedCategory]} />
+      <div className="mt-6 flex space-x-2">
+        {categories.map((category) => (
+          <RoundButton
+            key={category.label}
+            label={category.label}
+            isSelected={selectedCategory === category.label}
+            onClick={() =>
+              setSelectedCategory(category.label.split(" ")[1] as keyof FAQData)
+            }
+          />
+        ))}
       </div>
+
+      <FAQList faqs={faqsData[selectedCategory]} />
     </div>
   );
 }

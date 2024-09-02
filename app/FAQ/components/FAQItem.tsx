@@ -1,11 +1,11 @@
-import React, { useState, FC } from "react";
+import React, { useState } from "react";
 
 interface FAQItemProps {
   question: string;
   answer: string;
 }
 
-const FAQItem: FC<FAQItemProps> = function FAQItem({ question, answer }) {
+function FAQItem({ question, answer }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -40,6 +40,6 @@ const FAQItem: FC<FAQItemProps> = function FAQItem({ question, answer }) {
       </div>
     </div>
   );
-};
+}
 
 export default FAQItem;
