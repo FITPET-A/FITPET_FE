@@ -26,7 +26,7 @@ export default function FaqLayout({ children }: { children: React.ReactNode }) {
             </button>
             <Image
               alt="faq_logo"
-              className="absolute right-0 top-[184px] z-0 -translate-y-1/2 transform"
+              className="absolute right-6 top-[184px] z-0 -translate-y-1/2 transform"
               src="/assets/faq_logo.webp"
               width={170.82}
               height={136}

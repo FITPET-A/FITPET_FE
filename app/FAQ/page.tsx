@@ -60,7 +60,7 @@ export default function Home() {
           <RoundButton
             key={category.label}
             label={category.label}
-            isSelected={selectedCategory === category.label}
+            isSelected={selectedCategory === category.label.split(" ")[1]}
             onClick={() =>
               setSelectedCategory(category.label.split(" ")[1] as keyof FAQData)
             }
