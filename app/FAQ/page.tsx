@@ -1,18 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
+import { z } from "zod";
 import RoundButton from "@components/RoundButton";
 import SearchBar from "./components/SearchBar";
 import FAQList from "./components/FAQList";
 
-type FAQItem = {
-  question: string;
-  answer: string;
-};
+const FAQItemSchema = z.object({
+  question: z.string(),
+  answer: z.string(),
+});
 
-type FAQData = {
-  [category: string]: FAQItem[];
-};
+const FAQDataSchema = z.record(z.string(), z.array(FAQItemSchema));
+
+type FAQData = z.infer<typeof FAQDataSchema>;
 
 const categories = [
   { label: "🐾 가입조건" },
@@ -26,11 +27,11 @@ const categories = [
 ];
 
 // 예시로 더미 데이터 삽입 (앞에서 2개의 FAQ)
-const faqsData: FAQData = {
+const faqsData: FAQData = FAQDataSchema.parse({
   가입조건: [
     {
       question:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       answer:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
     },
@@ -45,7 +46,7 @@ const faqsData: FAQData = {
       answer: "The compensation works as follows.",
     },
   ],
-};
+});
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] =
@@ -60,7 +61,7 @@ export default function Home() {
           <RoundButton
             key={category.label}
             label={category.label}
-            isSelected={selectedCategory === category.label}
+            isSelected={selectedCategory === category.label.split(" ")[1]}
             onClick={() =>
               setSelectedCategory(category.label.split(" ")[1] as keyof FAQData)
             }
@@ -68,7 +69,7 @@ export default function Home() {
         ))}
       </div>
 
-      <FAQList faqs={faqsData[selectedCategory]} />
+      <FAQList faqs={faqsData[selectedCategory] || []} />
     </div>
   );
 }
