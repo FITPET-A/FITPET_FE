@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-export default function FaqLayout({ children }: { children: React.ReactNode }) {
+export default function FAQLayout({ children }: { children: React.ReactNode }) {
   return (
     <section
       className="flex flex-col items-center bg-grayscale-05"

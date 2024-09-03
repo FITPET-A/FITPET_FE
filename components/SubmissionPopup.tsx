@@ -3,10 +3,14 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface SubmissionPopupProps {
+  title: string;
   onClose: () => void;
 }
 
-export default function SubmissionPopup({ onClose }: SubmissionPopupProps) {
+export default function SubmissionPopup({
+  title,
+  onClose,
+}: SubmissionPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -36,17 +40,17 @@ export default function SubmissionPopup({ onClose }: SubmissionPopupProps) {
           onClick={handleClose}
         />
         <div className="font-paperlogy-heading text-[40px] text-primary-50">
-          견적서 접수 완료
+          {title}
         </div>
         <div className="mt-2 font-paperlogy-title text-3xl text-primary-30">
-          24시간 내에 카카오톡으로 보내드려요!
+          빠른 시일 내에 답변드리겠습니다!
         </div>
         <Image
           alt="submission"
-          src="/assets/submission.webp"
-          width={300}
-          height={300}
-          className="mt-6"
+          src="/assets/DOG_submission.webp"
+          width={401}
+          height={413}
+          className="mt-[49px]"
         />
       </div>
     </div>

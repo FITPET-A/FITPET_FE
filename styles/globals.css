@@ -16,3 +16,12 @@
   font-weight: 500;
   font-style: normal;
 }
+
+@layer components {
+  .custom-gradient-desktop {
+    background: linear-gradient(to bottom, #008cff 484px, transparent 484px);
+  }
+  .custom-gradient-tablet {
+    background: linear-gradient(to bottom, #008cff 464px, transparent 464px);
+  }
+}

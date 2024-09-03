@@ -5,7 +5,7 @@ import { useState } from "react";
 import { PetType } from "@ctypes/main";
 import AnimalInfoFormBox from "./components/AnimalInfoFormBox";
 
-export default function Home() {
+export default function MainPage() {
   const [petType, setPetType] = useState<PetType>("DOG");
 
   const handleButtonClick = (pet: PetType) => {
@@ -18,10 +18,10 @@ export default function Home() {
       </div>
       <Image
         alt="marty"
-        className="absolute -top-16 right-[76px] z-0"
+        className={`absolute ${petType === "DOG" ? "-top-[44px]" : "-top-[60px]"} right-[86px] z-0`}
         src={`/assets/${petType}_main.webp`}
-        width={236}
-        height={368}
+        width={435}
+        height={`${petType === "DOG" ? 538 : 554}`}
       />
       <AnimalInfoFormBox petType={petType} onButtonClick={handleButtonClick} />
     </div>

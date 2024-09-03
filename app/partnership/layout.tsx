@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MainLayout({
+export default function PartnershipLayout({
   children,
 }: {
   children: React.ReactNode;
