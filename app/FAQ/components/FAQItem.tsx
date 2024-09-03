@@ -25,13 +25,11 @@ function FAQItem({ question, answer }: FAQItemProps) {
         <p className="font-semibold text-grayscale-70">{`Q. ${question}`}</p>
         <Image
           src={
-            isOpen
-              ? "/assets/faq_answerButton.webp"
-              : "/assets/faq_questionButton.webp"
+            isOpen ? "svg/faq_answerButton.svg" : "/svg/faq_questionButton.svg"
           }
           alt={isOpen ? "Answer icon" : "Question icon"}
-          width={isOpen ? 18 : 9}
-          height={isOpen ? 15 : 18}
+          width={isOpen ? 24 : 24}
+          height={isOpen ? 24 : 24}
         />
       </div>
       <div
