@@ -82,7 +82,7 @@ const config: Config = {
     },
     screens: {
       desktop: "1080px",
-      tablet: "480px",
+      tablet: "767px",
     },
   },
   plugins: [],

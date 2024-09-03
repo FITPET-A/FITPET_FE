@@ -37,7 +37,7 @@ export default function SubmissionPopup({ onClose }: SubmissionPopupProps) {
           className="mt-10 self-end"
           aria-label="Close submission popup"
         >
-          <CloseIcon />
+          <CloseIcon className="stroke-primary-30" />
         </button>
         <div className="font-paperlogy-heading text-[40px] text-primary-50">
           견적서 접수 완료
