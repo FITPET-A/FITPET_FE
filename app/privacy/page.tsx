@@ -4,7 +4,7 @@ import React from "react";
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="mt-8 flex flex-col gap-8 text-md font-medium text-grayscale-80">
+    <div className="mb-[151px] mt-8 flex flex-col gap-8 text-md font-medium text-grayscale-80">
       <section>
         <p className="mt-1">
           스마트커버 인슈어런스 주식회사 개인정보 처리방침

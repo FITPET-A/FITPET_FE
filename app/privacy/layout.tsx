@@ -9,7 +9,7 @@ export default function TermsLayout({
     <section
       className="flex flex-col items-center"
       style={{
-        minHeight: "calc(100vh - 448px)",
+        minHeight: "calc(100vh - 440px)",
       }}
     >
       <div className="flex h-[284px] w-full justify-center bg-primary-50">
@@ -17,7 +17,9 @@ export default function TermsLayout({
           개인정보처리방침
         </h1>
       </div>
-      <div className="w-[1080px] bg-white px-6">{children}</div>
+      <div className="bg-white px-4 tablet:px-6 desktop:w-[1080px]">
+        {children}
+      </div>
     </section>
   );
 }
