@@ -69,7 +69,7 @@ export default function Home() {
         ))}
       </div>
 
-      <FAQList faqs={faqsData[selectedCategory]} />
+      <FAQList faqs={faqsData[selectedCategory] || []} />
     </div>
   );
 }

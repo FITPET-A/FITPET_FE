@@ -17,9 +17,9 @@ function FAQItem({ question, answer }: FAQItemProps) {
     <button
       type="button"
       onClick={handleToggle}
-      className={`mb-4 w-full gap-4 rounded-md p-8 text-left text-lg ${
-        isOpen ? "border border-primary-50" : "border border-transparent"
-      } bg-grayscale-00`}
+      className={`mb-4 w-full gap-4 rounded-md border bg-grayscale-00 p-8 text-left text-lg ${
+        isOpen ? "border-primary-50" : "border-transparent"
+      }`}
     >
       <div className="flex items-center justify-between">
         <p className="font-semibold text-grayscale-70">{`Q. ${question}`}</p>
