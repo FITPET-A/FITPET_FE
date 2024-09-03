@@ -10,7 +10,6 @@ import QuestionIcon from "./question.svg";
 
 export {
   HamburgerIcon,
-  RightDirectionIcon,
   CloseIcon,
   RightArrowIcon,
   DownArrowIcon,
