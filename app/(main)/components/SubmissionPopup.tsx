@@ -31,14 +31,10 @@ export default function SubmissionPopup({ onClose }: SubmissionPopupProps) {
         className="flex h-[536px] w-[536px] flex-col items-center rounded-3xl px-12"
         style={{ background: "linear-gradient(180deg, #FFF 0%, #CDE8FF 100%)" }}
       >
-        <button
-          type="button"
+        <CloseIcon
+          className="mt-10 cursor-pointer self-end stroke-primary-30"
           onClick={handleClose}
-          className="mt-10 self-end"
-          aria-label="Close submission popup"
-        >
-          <CloseIcon className="stroke-primary-30" />
-        </button>
+        />
         <div className="font-paperlogy-heading text-[40px] text-primary-50">
           견적서 접수 완료
         </div>
