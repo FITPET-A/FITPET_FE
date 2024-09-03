@@ -1,4 +1,5 @@
 import React from "react";
+import FloatingButton from "./components/FloatingButton";
 
 export default function MainLayout({
   children,
@@ -15,6 +16,7 @@ export default function MainLayout({
       }}
     >
       <div className="w-[1080px]">{children}</div>
+      <FloatingButton />
     </main>
   );
 }

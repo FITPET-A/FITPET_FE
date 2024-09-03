@@ -32,7 +32,7 @@ function Header() {
     <div>
       {isDesktop ? (
         <header
-          className={`fixed left-0 right-0 top-0 z-50 flex h-[84px] w-full items-center justify-center transition-colors duration-500 ${
+          className={`fixed left-0 right-0 top-0 z-40 flex h-[84px] w-full items-center justify-center transition-colors duration-500 ${
             isScrolled ? "bg-white shadow-md" : "bg-primary-50"
           }`}
         >
