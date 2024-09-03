@@ -1,23 +1,31 @@
-"use client";
-
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Checkbox } from "@chakra-ui/react";
-import { RightArrowIcon } from "@public/svg";
+import { PetType } from "@ctypes/main";
+import { RightDirectionIcon } from "@public/svg";
 import { useForm } from "react-hook-form";
 import RoundButton from "@components/RoundButton";
+import useGetPetSpecies from "@app/api/hooks/useGetPetSpecies";
 import SubmissionPopup from "./SubmissionPopup";
 
-const animals = [
-  { label: "🐶 강아지", value: "dog" },
-  { label: "🐱 고양이", value: "cat" },
+const animals: { label: string; value: PetType }[] = [
+  { label: "🐶 강아지", value: "DOG" },
+  { label: "🐱 고양이", value: "CAT" },
 ];
 
-function AnimalInfoFormBox() {
-  const [selectedAnimal, setSelectedAnimal] = useState("dog");
+interface AnimalInfoFormBoxProps {
+  petType: PetType;
+  onButtonClick: (pet: PetType) => void;
+}
+
+function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [debouncedBreed, setDebouncedBreed] = useState("");
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const breedInputRef = useRef<HTMLInputElement | null>(null);
 
   const {
     register,
+    setValue,
     handleSubmit,
     watch,
     formState: { errors },
@@ -35,10 +43,43 @@ function AnimalInfoFormBox() {
   const isFormValid =
     watchedFields.every((field) => field) && !Object.keys(errors).length;
 
+  const breed = watch("breed");
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (breed) {
+        setDebouncedBreed(breed.trim());
+      } else {
+        setDebouncedBreed("");
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [breed]);
+
+  const { data } = useGetPetSpecies({ petType, petSpecies: debouncedBreed });
+  const petSpeciesList = data?.data.petSpeciesList;
+
+  const handleFocus = () => {
+    setIsDropdownVisible(true);
+  };
+  const handleBlur = () => {
+    setIsDropdownVisible(false);
+  };
+
+  const handleClick = (species: string) => {
+    setValue("breed", species);
+    setIsDropdownVisible(false);
+    if (breedInputRef.current) {
+      breedInputRef.current.blur();
+    }
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => {
+  const onSubmit = (datas: any) => {
     setIsPopupOpen(true);
-    return data;
+    return datas;
   };
 
   const handClosePopup = () => {
@@ -54,8 +95,8 @@ function AnimalInfoFormBox() {
               <RoundButton
                 key={animal.value}
                 label={animal.label}
-                isSelected={selectedAnimal === animal.value}
-                onClick={() => setSelectedAnimal(animal.value)}
+                isSelected={petType === animal.value}
+                onClick={() => onButtonClick(animal.value)}
               />
             ))}
           </div>
@@ -79,10 +120,10 @@ function AnimalInfoFormBox() {
                     message: "우리 아이의 올바른 이름을 입력해 주세요.",
                   },
                 })}
-                className={`h-[59px] rounded-xl px-6 py-4 placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
+                className={`h-[59px] rounded-xl bg-grayscale-05 px-6 py-4 placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
                   errors.name
                     ? "outline outline-1 outline-red-500"
-                    : "bg-grayscale-05 focus:outline-primary-50"
+                    : "focus:outline-primary-50"
                 }`}
                 placeholder="아이의 이름은 무엇인가요?"
               />
@@ -92,7 +133,7 @@ function AnimalInfoFormBox() {
                 </p>
               )}
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="relative flex flex-col gap-2">
               <div className="flex">
                 <label htmlFor="breed">상세 품종</label>
                 <span className="text-primary-50">*</span>
@@ -100,10 +141,49 @@ function AnimalInfoFormBox() {
               <input
                 id="breed"
                 type="text"
-                {...register("breed", { required: true })}
-                className="h-[59px] rounded-xl bg-grayscale-05 px-6 py-4 placeholder:text-grayscale-40 focus:outline focus:outline-1 focus:outline-primary-50"
+                {...register("breed", {
+                  required: "아이의 품종을 입력해 주세요.",
+                  onBlur: handleBlur,
+                })}
+                ref={(e) => {
+                  register("breed").ref(e);
+                  breedInputRef.current = e;
+                }}
+                onFocus={handleFocus}
+                className={`h-[59px] rounded-xl bg-grayscale-05 px-6 py-4 placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
+                  (breed && petSpeciesList?.length === 0) || errors.breed
+                    ? "outline outline-1 outline-red-500"
+                    : "focus:outline-primary-50"
+                }`}
                 placeholder="아이의 품종은 무엇인가요?"
               />
+              {isDropdownVisible && (
+                <div className="absolute top-[110px] z-20 max-h-[255px] w-full overflow-y-auto rounded-xl bg-white shadow-main-form">
+                  {petSpeciesList?.map((species) => (
+                    <button
+                      key={species}
+                      type="button"
+                      className="w-full cursor-pointer px-6 py-3 text-left transition-colors duration-200 hover:bg-grayscale-10"
+                      onMouseDown={(e) => e.preventDefault()} // 드롭다운 클릭 시 blur 방지
+                      onClick={() => {
+                        handleClick(species);
+                      }}
+                    >
+                      {species}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {breed && petSpeciesList?.length === 0 && (
+                <p className="absolute -bottom-6 text-sm text-red-500">
+                  정보를 찾을 수 없습니다.
+                </p>
+              )}
+              {errors.breed && (
+                <p className="absolute -bottom-6 text-sm text-red-500">
+                  {errors.breed?.message?.toString()}
+                </p>
+              )}
             </div>
             <div className="relative flex flex-col gap-2">
               <div className="flex">
@@ -224,7 +304,7 @@ function AnimalInfoFormBox() {
                 <Checkbox
                   id="privacyConsent"
                   {...register("privacyConsent", { required: true })}
-                  className="mr-3"
+                  className="relative z-10 mr-3"
                   borderColor="#008CFF"
                   sx={{
                     "& .chakra-checkbox__control": {
@@ -268,7 +348,7 @@ function AnimalInfoFormBox() {
               >
                 견적서 발급받기
               </span>
-              <RightArrowIcon
+              <RightDirectionIcon
                 className={`${isFormValid ? "stroke-white" : "stroke-[#ACACB9]"}`}
               />
             </button>
