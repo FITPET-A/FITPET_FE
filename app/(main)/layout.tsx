@@ -6,14 +6,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main
-      className="flex justify-center"
-      style={{
-        background:
-          "linear-gradient(to bottom, #008CFF 484px, transparent 484px)",
-        minHeight: "calc(100vh - 440px)",
-      }}
-    >
+    <main className="desktop:custom-gradient-desktop tablet:custom-gradient-tablet flex min-h-[calc(100vh-440px)] justify-center">
       <div className="w-[1080px]">{children}</div>
     </main>
   );
