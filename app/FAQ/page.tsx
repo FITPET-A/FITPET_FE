@@ -48,7 +48,7 @@ const faqsData: FAQData = FAQDataSchema.parse({
   ],
 });
 
-export default function Home() {
+export default function FAQPage() {
   const [selectedCategory, setSelectedCategory] =
     useState<keyof FAQData>("가입조건");
 
