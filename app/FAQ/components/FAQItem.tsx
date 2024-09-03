@@ -23,11 +23,7 @@ function FAQItem({ question, answer }: FAQItemProps) {
     >
       <div className="flex items-center justify-between">
         <p className="font-semibold text-grayscale-70">{`Q. ${question}`}</p>
-        {isOpen ? (
-          <DownArrowIcon width={24} height={24} />
-        ) : (
-          <RightArrowIcon width={24} height={24} />
-        )}
+        {isOpen ? <DownArrowIcon /> : <RightArrowIcon />}
       </div>
       <div
         className={`overflow-hidden transition-all duration-300 ${
