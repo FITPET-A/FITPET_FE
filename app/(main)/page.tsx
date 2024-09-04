@@ -12,13 +12,13 @@ export default function MainPage() {
     setPetType(pet);
   };
   return (
-    <div className="relative mt-[170px] flex flex-col px-[40px]">
-      <div className="font-paperlogy-heading text-[40px] text-white">
+    <div className="relative mt-[170px] flex flex-col px-6 desktop:px-[40px]">
+      <div className="z-10 font-paperlogy-heading text-[40px] text-white">
         3초만에 무료로 <br />펫 보험 견적서를 신청하세요!
       </div>
       <Image
         alt="marty"
-        className={`absolute ${petType === "DOG" ? "-top-[44px]" : "-top-[60px]"} right-[86px] z-0`}
+        className={`absolute z-0 ${petType === "DOG" ? "-top-[44px]" : "-top-[60px]"} right-[66px] z-0 desktop:right-[86px]`}
         src={`/assets/${petType}_main.webp`}
         width={435}
         height={`${petType === "DOG" ? 538 : 554}`}
