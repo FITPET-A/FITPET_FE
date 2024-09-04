@@ -6,7 +6,7 @@ export default function PrivacyLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex min-h-[calc(100vh-440px)] flex-col items-center">
+    <section className="flex min-h-[calc(100vh-440px)] flex-col items-center tablet:min-h-[calc(100vh-448px)]">
       <div className="flex h-[284px] w-full justify-center bg-primary-50">
         <h1 className="mt-[154px] w-[1080px] px-6 font-paperlogy-heading text-[40px] text-white">
           개인정보처리방침
