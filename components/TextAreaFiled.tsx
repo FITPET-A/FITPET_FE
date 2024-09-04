@@ -39,13 +39,12 @@ export default function TextAreaField({
           },
         })}
         maxLength={maxLength}
-        className={`h-full rounded-xl bg-grayscale-05 px-6 py-4 placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
+        className={`h-full resize-none rounded-xl bg-grayscale-05 px-6 py-4 placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
           error
             ? "outline outline-1 outline-red-500"
             : "focus:outline-primary-50"
         }`}
         placeholder={placeholder}
-        style={{ resize: "none" }}
       />
       {error && (
         <p className="absolute -bottom-6 text-sm text-red-500">{error}</p>

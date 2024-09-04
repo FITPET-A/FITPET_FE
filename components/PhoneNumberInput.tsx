@@ -43,12 +43,12 @@ export default function PhoneNumberInput({
           </p>
         )}
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex w-full items-center gap-2">
         <input
           id="phone1"
           value="010"
           readOnly
-          className="h-[59px] w-[120px] rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 focus:outline-primary-50"
+          className="flex-grow rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 focus:outline-primary-50 tablet:w-[80px] desktop:w-[120px]"
         />
         <span className="text-grayscale-60">-</span>
         <input
@@ -62,7 +62,7 @@ export default function PhoneNumberInput({
               message: errorMessages.pattern || "올바른 번호를 입력해주세요.",
             },
           })}
-          className={`h-[59px] w-[120px] rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
+          className={`flex-grow rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
             errors?.phone2
               ? "outline outline-1 outline-red-500"
               : "focus:outline-primary-50"
@@ -81,7 +81,7 @@ export default function PhoneNumberInput({
               message: errorMessages.pattern || "올바른 번호를 입력해주세요.",
             },
           })}
-          className={`h-[59px] w-[120px] rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
+          className={`flex-grow rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
             errors?.phone3
               ? "outline outline-1 outline-red-500"
               : "focus:outline-primary-50"
