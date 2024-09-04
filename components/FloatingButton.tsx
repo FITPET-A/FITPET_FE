@@ -1,22 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import ROUTES from "@constants/path";
 import { useRouter } from "next/navigation";
 import KAKAO_CONTACT_URL from "@constants/kakao_contact";
+import ROUTES from "@constants/path";
+
+import ContactButtonIcon from "@public/svg/contactButton.svg";
+import ContactCloseButtonIcon from "@public/svg/contactCloseButton.svg";
+import CallIcon from "@public/svg/call.svg";
+import KakaoIcon from "@public/svg/kakao.svg";
+import MessageIcon from "@public/svg/message.svg";
+
 import PhonePopup from "./PhonePopup";
 
 function ContactButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [showPhonePopup, setShowPhonePopup] = useState(false);
   const router = useRouter();
-
-  const contactButtonImage = "/svg/contactButton.svg";
-  const contactCloseButtonImage = "/svg/contactCloseButton.svg";
-  const callImage = "/svg/call.svg";
-  const kakaoImage = "/svg/kakao.svg";
-  const contactImage = "/svg/message.svg";
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -45,7 +45,7 @@ function ContactButton() {
         break;
       case "faq":
         router.push(`${ROUTES.FAQ}`);
-        setIsOpen(false); // 플로팅 버튼 메뉴 닫기
+        setIsOpen(false);
         break;
       case "contact":
         alert("1:1 문의 창구입니다.");
@@ -70,7 +70,7 @@ function ContactButton() {
       {isOpen && <div className="fixed inset-0 z-40 bg-black bg-opacity-50" />}
       {showPhonePopup && <PhonePopup onClose={closePopup} />}
 
-      <div className="fixed right-[428px] top-[572px] z-40">
+      <div className="fixed bottom-[80px] right-[128px] z-40">
         <div className="relative">
           {/* 문의 버튼 */}
           <button
@@ -80,12 +80,7 @@ function ContactButton() {
               isOpen ? "bg-grayscale-00" : "bg-primary-50"
             }`}
           >
-            <Image
-              src={isOpen ? contactCloseButtonImage : contactButtonImage}
-              alt={isOpen ? "Close Button" : "Contact Button"}
-              width={51}
-              height={48}
-            />
+            {isOpen ? <ContactCloseButtonIcon /> : <ContactButtonIcon />}
           </button>
 
           {/* 4가지 버튼 목록 */}
@@ -100,14 +95,14 @@ function ContactButton() {
                 label: "1:1 문의",
                 type: "contact",
                 delay: "0.45s",
-                imageSrc: contactImage,
+                Icon: MessageIcon,
                 customStyle: "bg-grayscale-00 text-grayscale-80",
               },
               {
                 label: "전화 문의",
                 type: "phone",
                 delay: "0.3s",
-                imageSrc: callImage,
+                Icon: CallIcon,
                 customStyle: "bg-grayscale-00 text-grayscale-80",
               },
               {
@@ -120,10 +115,10 @@ function ContactButton() {
                 label: "카카오톡 문의",
                 type: "kakao",
                 delay: "0.01s",
-                imageSrc: kakaoImage,
+                Icon: KakaoIcon,
                 customStyle: "bg-[#FAE100] text-[#3C1D1E]",
               },
-            ].map(({ label, type, delay, imageSrc, customStyle }) => (
+            ].map(({ label, type, delay, Icon, customStyle }) => (
               <button
                 type="button"
                 key={type}
@@ -140,15 +135,7 @@ function ContactButton() {
                   borderRadius: "64px 32px 8px 64px",
                 }}
               >
-                {imageSrc && (
-                  <Image
-                    src={imageSrc}
-                    alt={`${label} icon`}
-                    width={20}
-                    height={20}
-                    className="mr-2 inline-block"
-                  />
-                )}
+                {Icon && <Icon className="mr-2 inline-block" />}
                 {label}
               </button>
             ))}
