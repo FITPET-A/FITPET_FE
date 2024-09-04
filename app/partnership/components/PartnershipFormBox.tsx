@@ -99,7 +99,7 @@ function PartnershipFormBox() {
   return (
     <>
       <FormProvider {...methods}>
-        <div className="z-10 mt-12 flex flex-col rounded-3xl bg-white pb-8 pt-9 shadow-main-form tablet:px-[28px] desktop:px-9">
+        <div className="z-10 mt-12 flex flex-col rounded-3xl bg-white pb-8 pt-9 shadow-main-form tablet:px-8 desktop:px-9">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-y-10 text-lg font-medium tablet:gap-x-8 desktop:gap-x-12">
               <InputField

@@ -38,9 +38,14 @@ export default function PhoneNumberInput({
           {required && <span className="text-primary-50">*</span>}
         </div>
         {showDescription && (
-          <p className="text-sm text-grayscale-40">
-            전화번호를 입력하면 문자로 견적서를 받을 수 있어요
-          </p>
+          <div>
+            <p className="hidden text-sm text-grayscale-40 desktop:block">
+              전화번호를 입력하면 문자로 견적서를 받을 수 있어요
+            </p>
+            <p className="text-sm text-grayscale-40 desktop:hidden">
+              문자로 견적서를 보내드려요!
+            </p>
+          </div>
         )}
       </div>
       <div className="flex w-full items-center gap-2">
@@ -48,7 +53,7 @@ export default function PhoneNumberInput({
           id="phone1"
           value="010"
           readOnly
-          className="flex-grow rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 focus:outline-primary-50 tablet:w-[80px] desktop:w-[120px]"
+          className="flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 focus:outline-primary-50 tablet:w-[80px] desktop:w-[120px]"
         />
         <span className="text-grayscale-60">-</span>
         <input
@@ -62,7 +67,7 @@ export default function PhoneNumberInput({
               message: errorMessages.pattern || "올바른 번호를 입력해주세요.",
             },
           })}
-          className={`flex-grow rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
+          className={`flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
             errors?.phone2
               ? "outline outline-1 outline-red-500"
               : "focus:outline-primary-50"
@@ -81,7 +86,7 @@ export default function PhoneNumberInput({
               message: errorMessages.pattern || "올바른 번호를 입력해주세요.",
             },
           })}
-          className={`flex-grow rounded-xl bg-grayscale-05 px-6 py-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
+          className={`flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
             errors?.phone3
               ? "outline outline-1 outline-red-500"
               : "focus:outline-primary-50"
