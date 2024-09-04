@@ -6,9 +6,11 @@ import useGetPetSpecies from "@app/api/hooks/useGetPetSpecies";
 import InputField from "@components/InputField";
 import PhoneNumberInput from "@components/PhoneNumberInput";
 import CheckboxWithLabel from "@components/CheckboxWithLabel";
-import SubmissionPopup from "./SubmissionPopup";
+import PolicyModal from "@components/PolicyModal";
+import POLICIES from "@constants/policy";
 import AgeInput from "./AgeInput";
 import BreedInput from "./BreedInput";
+import SubmissionPopup from "./SubmissionPopup";
 
 const animals: { label: string; value: PetType }[] = [
   { label: "🐶 강아지", value: "DOG" },
@@ -21,7 +23,8 @@ interface AnimalInfoFormBoxProps {
 }
 
 function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isSubmitPopupOpen, setIsSubmitPopupOpen] = useState(false);
+  const [isPolicyPopupOpen, setIsPolicyPopupOpen] = useState(false);
   const [debouncedBreed, setDebouncedBreed] = useState("");
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const breedInputRef = useRef<HTMLInputElement | null>(null);
@@ -81,12 +84,16 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (datas: any) => {
-    setIsPopupOpen(true);
+    setIsSubmitPopupOpen(true);
     return datas;
   };
 
-  const handClosePopup = () => {
-    setIsPopupOpen(false);
+  const handCloseSubmitPopup = () => {
+    setIsSubmitPopupOpen(false);
+  };
+
+  const handleClosePolicyPopup = () => {
+    setIsPolicyPopupOpen(false);
   };
 
   return (
@@ -156,7 +163,11 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
                   label="개인정보 수집 및 이용 동의"
                   required
                 />
-                <button type="button" className="text-primary-50">
+                <button
+                  type="button"
+                  onClick={() => setIsPolicyPopupOpen(true)}
+                  className="text-primary-50"
+                >
                   약관 보기
                 </button>
               </div>
@@ -176,7 +187,13 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
           </form>
         </div>
       </FormProvider>
-      {isPopupOpen && <SubmissionPopup onClose={handClosePopup} />}
+      {isSubmitPopupOpen && <SubmissionPopup onClose={handCloseSubmitPopup} />}
+      {isPolicyPopupOpen && (
+        <PolicyModal
+          detail={POLICIES.INSURANCE_POLICY}
+          onClose={handleClosePolicyPopup}
+        />
+      )}
     </>
   );
 }

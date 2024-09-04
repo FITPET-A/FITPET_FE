@@ -9,6 +9,8 @@ import TextAreaField from "@components/TextAreaFiled";
 import SubmissionPopup from "@components/SubmissionPopup";
 import usePostProposal from "@app/api/hooks/usePostPropsal";
 import { useToast } from "@chakra-ui/react";
+import POLICIES from "@constants/policy";
+import PolicyModal from "@components/PolicyModal";
 
 type ProposalFormValues = {
   companyName: string;
@@ -28,7 +30,8 @@ type ProposalData = {
 
 function PartnershipFormBox() {
   const toast = useToast();
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPolicyPopupOpen, setIsPolicyPopupOpen] = useState(false);
+  const [isSubmitPopupOpen, setIsSubmitPopupOpen] = useState(false);
 
   const methods = useForm<ProposalFormValues>();
   const {
@@ -66,7 +69,7 @@ function PartnershipFormBox() {
 
     mutate(proposalData, {
       onSuccess: () => {
-        setIsPopupOpen(true);
+        setIsSubmitPopupOpen(true);
         reset();
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -92,8 +95,12 @@ function PartnershipFormBox() {
     });
   };
 
-  const handClosePopup = () => {
-    setIsPopupOpen(false);
+  const handCloseSubmitPopup = () => {
+    setIsSubmitPopupOpen(false);
+  };
+
+  const handleClosePolicyPopup = () => {
+    setIsPolicyPopupOpen(false);
   };
 
   return (
@@ -140,7 +147,11 @@ function PartnershipFormBox() {
                     label="개인정보 수집 및 이용 동의"
                     required
                   />
-                  <button type="button" className="text-primary-50">
+                  <button
+                    type="button"
+                    onClick={() => setIsPolicyPopupOpen(true)}
+                    className="text-primary-50"
+                  >
                     약관 보기
                   </button>
                 </div>
@@ -171,10 +182,16 @@ function PartnershipFormBox() {
           </form>
         </div>
       </FormProvider>
-      {isPopupOpen && (
+      {isSubmitPopupOpen && (
         <SubmissionPopup
           title="제안해주셔서 감사합니다"
-          onClose={handClosePopup}
+          onClose={handCloseSubmitPopup}
+        />
+      )}
+      {isPolicyPopupOpen && (
+        <PolicyModal
+          detail={POLICIES.PROPOSAL_POLICY}
+          onClose={handleClosePolicyPopup}
         />
       )}
     </>
