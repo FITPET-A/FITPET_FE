@@ -7,13 +7,33 @@ import PhoneNumberInput from "@components/PhoneNumberInput";
 import CheckboxWithLabel from "@components/CheckboxWithLabel";
 import TextAreaField from "@components/TextAreaFiled";
 import SubmissionPopup from "@components/SubmissionPopup";
+import usePostProposal from "@app/api/hooks/usePostPropsal";
+import { useToast } from "@chakra-ui/react";
+
+type ProposalFormValues = {
+  companyName: string;
+  email: string;
+  comment: string;
+  phone2?: string;
+  phone3?: string;
+  privacyConsent: boolean;
+};
+
+type ProposalData = {
+  name: string;
+  email: string;
+  comment: string;
+  phoneNum?: string;
+};
 
 function PartnershipFormBox() {
+  const toast = useToast();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const methods = useForm();
+  const methods = useForm<ProposalFormValues>();
   const {
     watch,
+    reset,
     formState: { errors },
     handleSubmit,
   } = methods;
@@ -21,19 +41,55 @@ function PartnershipFormBox() {
   const watchedFields = watch([
     "companyName",
     "email",
-    "phone2",
-    "phone3",
     "privacyConsent",
-    "inquiry",
+    "comment",
   ]);
+
+  const phone2 = watch("phone2");
+  const phone3 = watch("phone3");
 
   const isFormValid =
     watchedFields.every((field) => field) && !Object.keys(errors).length;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (datas: any) => {
-    setIsPopupOpen(true);
-    return datas;
+  const { mutate } = usePostProposal();
+
+  const onSubmit = (data: ProposalFormValues) => {
+    const proposalData: ProposalData = {
+      name: data.companyName,
+      email: data.email,
+      comment: data.comment,
+    };
+
+    if (phone2 || phone3) {
+      proposalData.phoneNum = `010-${phone2}-${phone3}`;
+    }
+
+    mutate(proposalData, {
+      onSuccess: () => {
+        setIsPopupOpen(true);
+        reset();
+      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onError: (error: any) => {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          toast({
+            title: `${error.response.data.message}`,
+            status: "error",
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: "알 수 없는 에러가 발생했습니다.",
+            status: "error",
+            isClosable: true,
+          });
+        }
+      },
+    });
   };
 
   const handClosePopup = () => {
@@ -43,9 +99,9 @@ function PartnershipFormBox() {
   return (
     <>
       <FormProvider {...methods}>
-        <div className="z-10 mt-12 flex flex-col rounded-3xl bg-white px-9 pb-8 pt-9 shadow-main-form">
+        <div className="z-10 mt-12 flex flex-col rounded-3xl bg-white pb-8 pt-9 shadow-main-form tablet:px-[28px] desktop:px-9">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-10 text-lg font-medium">
+            <div className="grid grid-cols-2 gap-y-10 text-lg font-medium tablet:gap-x-8 desktop:gap-x-12">
               <InputField
                 id="companyName"
                 label="기업명"
@@ -78,7 +134,7 @@ function PartnershipFormBox() {
                     phone3: errors.phone3,
                   }}
                 />
-                <div className="flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-md">
+                <div className="flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm desktop:text-md">
                   <CheckboxWithLabel
                     id="privacyConsent"
                     label="개인정보 수집 및 이용 동의"
@@ -90,14 +146,14 @@ function PartnershipFormBox() {
                 </div>
               </div>
               <TextAreaField
-                id="inquiry"
+                id="comment"
                 label="제휴 문의 내용"
                 required
                 placeholder="제휴 문의 내용은 무엇인가요?"
                 validation={{
                   required: "문의 내용을 입력해주세요",
                 }}
-                error={errors.inquiry?.message?.toString()}
+                error={errors.comment?.message?.toString()}
               />
             </div>
             <div className="mt-10 flex w-full justify-center">

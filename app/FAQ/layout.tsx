@@ -3,12 +3,7 @@ import Image from "next/image";
 
 export default function FAQLayout({ children }: { children: React.ReactNode }) {
   return (
-    <section
-      className="flex flex-col items-center bg-grayscale-05"
-      style={{
-        minHeight: "calc(100vh - 448px)",
-      }}
-    >
+    <section className="flex min-h-[calc(100vh-440px)] flex-col items-center bg-grayscale-05 tablet:min-h-[calc(100vh-448px)]">
       <div className="flex h-[284px] w-full justify-center bg-primary-50">
         <div className="relative w-[1080px] px-6">
           {/* 텍스트 */}

@@ -43,7 +43,7 @@ function BreedInput({
           breedInputRef.current = e;
         }}
         onFocus={handleFocus}
-        className={`h-[59px] rounded-xl bg-grayscale-05 px-6 py-4 placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
+        className={`rounded-xl bg-grayscale-05 px-6 py-4 placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
           (breed && petSpeciesList?.length === 0) || errors.breed
             ? "outline outline-1 outline-red-500"
             : "focus:outline-primary-50"
