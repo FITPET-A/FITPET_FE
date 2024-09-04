@@ -63,7 +63,7 @@ function Header() {
         </div>
       </header>
       <header
-        className={`fixed left-0 right-0 top-0 z-30 flex h-14 w-full items-center justify-center px-4 transition-colors duration-500 tablet:h-16 tablet:px-6 desktop:hidden ${
+        className={`fixed left-0 right-0 top-0 z-30 flex h-14 w-full items-center justify-center px-4 transition-colors duration-500 tablet:h-16 tablet:pl-8 tablet:pr-6 desktop:hidden ${
           isScrolled ? "bg-white shadow-md" : "bg-primary-50"
         }`}
       >

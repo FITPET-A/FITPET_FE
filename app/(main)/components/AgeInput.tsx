@@ -31,7 +31,7 @@ function AgeInput() {
                 "우리 아이의 정확한 만 나이를 입력해주세요.",
             },
           })}
-          className={`h-[59px] w-full rounded-xl bg-grayscale-05 py-4 pl-6 pr-[50px] placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
+          className={`w-full rounded-xl bg-grayscale-05 py-4 pl-6 pr-[50px] placeholder:text-grayscale-40 focus:outline focus:outline-1 ${
             errors.age
               ? "outline outline-1 outline-red-500"
               : "focus:outline-primary-50"

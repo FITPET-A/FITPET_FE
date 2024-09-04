@@ -6,9 +6,11 @@ import useGetPetSpecies from "@app/api/hooks/useGetPetSpecies";
 import InputField from "@components/InputField";
 import PhoneNumberInput from "@components/PhoneNumberInput";
 import CheckboxWithLabel from "@components/CheckboxWithLabel";
-import SubmissionPopup from "./SubmissionPopup";
+import PolicyModal from "@components/PolicyModal";
+import POLICIES from "@constants/policy";
 import AgeInput from "./AgeInput";
 import BreedInput from "./BreedInput";
+import SubmissionPopup from "./SubmissionPopup";
 
 const animals: { label: string; value: PetType }[] = [
   { label: "🐶 강아지", value: "DOG" },
@@ -21,7 +23,8 @@ interface AnimalInfoFormBoxProps {
 }
 
 function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isSubmitPopupOpen, setIsSubmitPopupOpen] = useState(false);
+  const [isPolicyPopupOpen, setIsPolicyPopupOpen] = useState(false);
   const [debouncedBreed, setDebouncedBreed] = useState("");
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const breedInputRef = useRef<HTMLInputElement | null>(null);
@@ -81,18 +84,22 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (datas: any) => {
-    setIsPopupOpen(true);
+    setIsSubmitPopupOpen(true);
     return datas;
   };
 
-  const handClosePopup = () => {
-    setIsPopupOpen(false);
+  const handCloseSubmitPopup = () => {
+    setIsSubmitPopupOpen(false);
+  };
+
+  const handleClosePolicyPopup = () => {
+    setIsPolicyPopupOpen(false);
   };
 
   return (
     <>
       <FormProvider {...methods}>
-        <div className="z-10 mt-12 flex flex-col rounded-3xl bg-white px-9 py-8 shadow-main-form">
+        <div className="z-10 mt-12 flex flex-col rounded-3xl bg-white py-8 shadow-main-form tablet:px-8 desktop:px-9">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex space-x-4">
               {animals.map((animal) => (
@@ -135,7 +142,7 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
               <InputField
                 id="condition"
                 label="반려동물 상태"
-                placeholder="수술 이력, 건강 상태 등 특이사항을 간단히 작성해주세요."
+                placeholder="수술 이력 등이 있나요?"
                 maxLength={30}
               />
               <PhoneNumberInput
@@ -150,13 +157,17 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
                   pattern: "견적서 발송을 위해 정확한 번호를 입력해주세요.",
                 }}
               />
-              <div className="mt-[37px] flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-md">
+              <div className="mt-[37px] flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm desktop:text-md">
                 <CheckboxWithLabel
                   id="privacyConsent"
                   label="개인정보 수집 및 이용 동의"
                   required
                 />
-                <button type="button" className="text-primary-50">
+                <button
+                  type="button"
+                  onClick={() => setIsPolicyPopupOpen(true)}
+                  className="text-primary-50"
+                >
                   약관 보기
                 </button>
               </div>
@@ -176,7 +187,13 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
           </form>
         </div>
       </FormProvider>
-      {isPopupOpen && <SubmissionPopup onClose={handClosePopup} />}
+      {isSubmitPopupOpen && <SubmissionPopup onClose={handCloseSubmitPopup} />}
+      {isPolicyPopupOpen && (
+        <PolicyModal
+          detail={POLICIES.INSURANCE_POLICY}
+          onClose={handleClosePolicyPopup}
+        />
+      )}
     </>
   );
 }
