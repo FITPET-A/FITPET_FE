@@ -1,5 +1,4 @@
 import React from "react";
-import FloatingButton from "./components/FloatingButton";
 
 export default function MainLayout({
   children,
@@ -9,7 +8,6 @@ export default function MainLayout({
   return (
     <main className="desktop:custom-gradient-desktop tablet:custom-gradient-tablet flex min-h-[calc(100vh-440px)] justify-center">
       <div className="w-[1080px]">{children}</div>
-      <FloatingButton />
     </main>
   );
 }

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import React from "react";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
+import FloatingButton from "@components/FloatingButton";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
+          <FloatingButton />
           <Footer />
         </Providers>
       </body>

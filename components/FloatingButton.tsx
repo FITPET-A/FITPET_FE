@@ -2,17 +2,21 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import ROUTES from "@constants/path";
+import { useRouter } from "next/navigation";
+import KAKAO_CONTACT_URL from "@constants/kakao_contact";
 import PhonePopup from "./PhonePopup";
 
 function ContactButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [showPhonePopup, setShowPhonePopup] = useState(false);
+  const router = useRouter();
 
-  const contactButtonImage = "/assets/contactButton.webp";
-  const contactCloseButtonImage = "/assets/contactCloseButton.webp";
-  const callImage = "/assets/call.webp";
-  const kakaoImage = "/assets/kakao.webp";
-  const contactImage = "/assets/contact.webp";
+  const contactButtonImage = "/svg/contactButton.svg";
+  const contactCloseButtonImage = "/svg/contactCloseButton.svg";
+  const callImage = "/svg/call.svg";
+  const kakaoImage = "/svg/kakao.svg";
+  const contactImage = "/svg/message.svg";
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -28,19 +32,20 @@ function ContactButton() {
   ): void => {
     switch (type) {
       case "kakao":
-        window.location.href =
-          "https://accounts.kakao.com/login/simple/?continue=https%3A%2F%2Fpf.kakao.com%2F_cxdAfG%2Fchat%3Fapi_ver%3D1.1%26kakao_agent%3Dsdk%252F1.43.5%2520os%252Fjavascript%2520sdk_type%252Fjavascript%2520lang%252Fko-KR%2520device%252FMacIntel%2520origin%252Fhttps%25253A%25252F%25252Fsmartcoverins.co.kr%26app_key%3Deaee99f853daf0ece04623eef69503fe%26referer%3Dhttps%253A%252F%252Fsmartcoverins.co.kr%252F&talk_login=#simpleLogin";
+        window.location.href = KAKAO_CONTACT_URL;
         break;
       case "phone":
         if (isMobile()) {
-          window.location.href = "tel:010-1234-5678";
+          // 모바일에서는 바로 전화를 걸 수 있게 설정
+          window.location.href = "tel:010-5738-1800";
         } else {
           // 데스크탑에서는 팝업을 띄움
           setShowPhonePopup(true);
         }
         break;
       case "faq":
-        window.location.href = "/FAQ/page.tsx";
+        router.push(`${ROUTES.FAQ}`);
+        setIsOpen(false); // 플로팅 버튼 메뉴 닫기
         break;
       case "contact":
         alert("1:1 문의 창구입니다.");
@@ -56,39 +61,36 @@ function ContactButton() {
   };
 
   // 버튼 공통 스타일 변수 생성
-  const buttonBaseClasses =
-    "h-10 rounded-lg border border-slate-600 bg-grayscale-00 text-grayscale-80 transition-transform duration-500 ease-out";
+  const buttonBaseClasses = "transition-transform duration-500 ease-out";
   const containerBaseClasses =
     "flex items-center justify-center rounded-3xl font-bold transition-transform duration-300";
 
   return (
     <div className="relative">
-      {isOpen && (
-        <div className="fixed inset-0 z-40 bg-grayscale-110 opacity-90" />
-      )}
+      {isOpen && <div className="fixed inset-0 z-40 bg-black bg-opacity-50" />}
       {showPhonePopup && <PhonePopup onClose={closePopup} />}
 
-      <div className="fixed right-[196px] top-[600px] z-50">
+      <div className="fixed right-[428px] top-[572px] z-40">
         <div className="relative">
           {/* 문의 버튼 */}
           <button
             type="button"
             onClick={toggleMenu}
-            className={`flex h-[52px] w-[52px] rounded-[64px] ${containerBaseClasses} ${
+            className={`flex h-[104px] w-[104px] rounded-full ${containerBaseClasses} ${
               isOpen ? "bg-grayscale-00" : "bg-primary-50"
             }`}
           >
             <Image
               src={isOpen ? contactCloseButtonImage : contactButtonImage}
               alt={isOpen ? "Close Button" : "Contact Button"}
-              width={24}
-              height={24}
+              width={51}
+              height={48}
             />
           </button>
 
           {/* 4가지 버튼 목록 */}
           <div
-            className={`absolute bottom-20 right-0 flex w-max flex-col items-end gap-6 text-xl font-semibold text-grayscale-80 transition-all ease-out ${
+            className={`absolute bottom-24 right-0 flex w-max flex-col items-end gap-6 text-xl font-semibold text-grayscale-80 transition-all ease-out ${
               isOpen ? "opacity-100" : "opacity-0"
             }`}
             style={{ transitionDuration: "400ms" }}
@@ -99,20 +101,27 @@ function ContactButton() {
                 type: "contact",
                 delay: "0.45s",
                 imageSrc: contactImage,
+                customStyle: "bg-grayscale-00 text-grayscale-80",
               },
               {
                 label: "전화 문의",
                 type: "phone",
                 delay: "0.3s",
                 imageSrc: callImage,
+                customStyle: "bg-grayscale-00 text-grayscale-80",
               },
-              { label: "자주 묻는 질문", type: "faq", delay: "0.15s" },
+              {
+                label: "자주 묻는 질문",
+                type: "faq",
+                delay: "0.15s",
+                customStyle: "bg-grayscale-00 text-grayscale-80",
+              },
               {
                 label: "카카오톡 문의",
                 type: "kakao",
                 delay: "0.01s",
                 imageSrc: kakaoImage,
-                customStyle: "bg-[#FAE100] border-none text-[#3C1D1E]",
+                customStyle: "bg-[#FAE100] text-[#3C1D1E]",
               },
             ].map(({ label, type, delay, imageSrc, customStyle }) => (
               <button
@@ -123,14 +132,12 @@ function ContactButton() {
                     type as "kakao" | "phone" | "faq" | "contact",
                   )
                 }
-                className={`${buttonBaseClasses} ${
+                className={`${buttonBaseClasses} px-6 py-3 ${
                   isOpen ? "translate-y-0 scale-100" : "translate-y-10 scale-0"
                 } ${customStyle ?? ""}`}
                 style={{
                   transitionDelay: delay,
-                  padding: "12px",
-                  borderRadius: "64px 48px 24px 64px",
-                  height: "54px",
+                  borderRadius: "64px 32px 8px 64px",
                 }}
               >
                 {imageSrc && (
