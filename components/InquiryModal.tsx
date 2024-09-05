@@ -113,10 +113,10 @@ export default function InquiryModal({ onClose }: InquiryModalProps) {
       >
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex w-[536px] flex-col gap-8 overflow-hidden rounded-3xl bg-white pt-10">
-              <div className="flex w-full flex-col gap-6 px-12">
+            <div className="flex w-[342px] flex-col gap-6 overflow-hidden rounded-3xl bg-white pt-6 tablet:w-[536px] tablet:gap-8 tablet:pt-10">
+              <div className="flex w-full flex-col gap-4 px-6 tablet:gap-6 tablet:px-12">
                 <div className="flex w-full items-center justify-between">
-                  <span className="font-paperlogy-title text-3xl text-grayscale-100">
+                  <span className="font-paperlogy-title text-xl text-grayscale-100 tablet:text-3xl">
                     1:1 문의
                   </span>
                   <CloseIcon
@@ -124,7 +124,7 @@ export default function InquiryModal({ onClose }: InquiryModalProps) {
                     onClick={handleClose}
                   />
                 </div>
-                <div className="mt-6 flex w-full flex-col gap-8 text-lg font-medium">
+                <div className="flex w-full flex-col gap-6 text-sm font-medium tablet:gap-8 tablet:text-lg">
                   <InputField
                     id="name"
                     label="이름"
@@ -168,7 +168,7 @@ export default function InquiryModal({ onClose }: InquiryModalProps) {
                     error={errors.comment?.message?.toString()}
                   />
                 </div>
-                <div className="flex h-14 w-full items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-md">
+                <div className="flex h-14 w-full items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm tablet:text-md">
                   <CheckboxWithLabel
                     id="privacyConsent"
                     label="개인정보 수집 및 이용 동의"
@@ -185,7 +185,7 @@ export default function InquiryModal({ onClose }: InquiryModalProps) {
               </div>
               <button
                 type="submit"
-                className={`w-full p-6 text-3xl font-semibold ${
+                className={`w-full py-4 text-lg font-semibold tablet:py-6 tablet:text-3xl ${
                   isFormValid
                     ? "bg-primary-50 text-white"
                     : "bg-grayscale-10 text-grayscale-40"

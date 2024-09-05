@@ -44,7 +44,9 @@ export default function InputField({
         placeholder={placeholder}
       />
       {error && (
-        <p className="absolute -bottom-6 text-sm text-red-500">{error}</p>
+        <p className="absolute -bottom-6 hidden text-sm text-red-500 tablet:block">
+          {error}
+        </p>
       )}
     </div>
   );

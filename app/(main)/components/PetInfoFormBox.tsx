@@ -8,6 +8,8 @@ import PhoneNumberInput from "@components/PhoneNumberInput";
 import CheckboxWithLabel from "@components/CheckboxWithLabel";
 import PolicyModal from "@components/PolicyModal";
 import POLICIES from "@constants/policy";
+import usePostComparison from "@app/api/hooks/usePostComparison";
+import { useToast } from "@chakra-ui/react";
 import AgeInput from "./AgeInput";
 import BreedInput from "./BreedInput";
 import SubmissionPopup from "./SubmissionPopup";
@@ -17,22 +19,45 @@ const animals: { label: string; value: PetType }[] = [
   { label: "🐱 고양이", value: "CAT" },
 ];
 
-interface AnimalInfoFormBoxProps {
+interface PetInfoFormBoxProps {
   petType: PetType;
   onButtonClick: (pet: PetType) => void;
 }
 
-function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
+type PetInfoFormValues = {
+  name: string;
+  breed: string;
+  age: string;
+  condition?: string;
+  phone2: string;
+  phone3: string;
+  privacyConsent: boolean;
+};
+
+type PetInfoData = {
+  petName: string;
+  petType: string;
+  petSpecies: string;
+  petAge: number;
+  phoneNumber: string;
+  comment?: string;
+  referSite?: string;
+  referUserId?: string;
+};
+
+function PetInfoFormBox({ petType, onButtonClick }: PetInfoFormBoxProps) {
+  const toast = useToast();
   const [isSubmitPopupOpen, setIsSubmitPopupOpen] = useState(false);
   const [isPolicyPopupOpen, setIsPolicyPopupOpen] = useState(false);
   const [debouncedBreed, setDebouncedBreed] = useState("");
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const breedInputRef = useRef<HTMLInputElement | null>(null);
 
-  const methods = useForm();
+  const methods = useForm<PetInfoFormValues>();
   const {
     setValue,
     watch,
+    reset,
     formState: { errors },
     handleSubmit,
   } = methods;
@@ -64,8 +89,11 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
     };
   }, [breed]);
 
-  const { data } = useGetPetSpecies({ petType, petSpecies: debouncedBreed });
-  const petSpeciesList = data?.data.petSpeciesList;
+  const { data: petSpeciesData } = useGetPetSpecies({
+    petType,
+    petSpecies: debouncedBreed,
+  });
+  const petSpeciesList = petSpeciesData?.data.petSpeciesList;
 
   const handleFocus = () => {
     setIsDropdownVisible(true);
@@ -82,10 +110,44 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (datas: any) => {
-    setIsSubmitPopupOpen(true);
-    return datas;
+  const { mutate } = usePostComparison();
+
+  const onSubmit = (data: PetInfoFormValues) => {
+    const petInfoData: PetInfoData = {
+      petName: data.name,
+      petType,
+      petSpecies: data.breed,
+      petAge: Number(data.age),
+      phoneNumber: `010-${data.phone2}-${data.phone3}`,
+      comment: data.condition,
+    };
+
+    mutate(petInfoData, {
+      onSuccess: () => {
+        setIsSubmitPopupOpen(true);
+        reset();
+      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onError: (error: any) => {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          toast({
+            title: `${error.response.data.message}`,
+            status: "error",
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: "알 수 없는 에러가 발생했습니다.",
+            status: "error",
+            isClosable: true,
+          });
+        }
+      },
+    });
   };
 
   const handCloseSubmitPopup = () => {
@@ -99,9 +161,9 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
   return (
     <>
       <FormProvider {...methods}>
-        <div className="z-10 mt-12 flex flex-col rounded-3xl bg-white py-8 shadow-main-form tablet:px-8 desktop:px-9">
+        <div className="z-10 mt-4 flex flex-col rounded-3xl bg-white pt-6 shadow-main-form tablet:mt-12 tablet:px-8 tablet:py-8 desktop:px-9">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex space-x-4">
+            <div className="flex w-full justify-center space-x-4">
               {animals.map((animal) => (
                 <RoundButton
                   key={animal.value}
@@ -111,7 +173,7 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
                 />
               ))}
             </div>
-            <div className="mt-6 grid grid-cols-2 gap-10 text-lg font-medium">
+            <div className="grid-grid-cols-1 mt-6 grid gap-8 px-4 text-lg font-medium tablet:grid-cols-2 tablet:gap-10">
               <InputField
                 id="name"
                 label="이름"
@@ -157,7 +219,7 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
                   pattern: "견적서 발송을 위해 정확한 번호를 입력해주세요.",
                 }}
               />
-              <div className="mt-[37px] flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm desktop:text-md">
+              <div className="mt-5 flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm tablet:mt-[37px] desktop:text-md">
                 <CheckboxWithLabel
                   id="privacyConsent"
                   label="개인정보 수집 및 이용 동의"
@@ -172,7 +234,7 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
                 </button>
               </div>
             </div>
-            <div className="mt-10 flex w-full justify-center">
+            <div className="mt-10 hidden w-full justify-center tablet:flex">
               <button
                 type="submit"
                 className={`w-[360px] rounded-2xl py-[14px] font-paperlogy-title text-3xl ${
@@ -184,6 +246,16 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
                 견적서 발급받기
               </button>
             </div>
+            <button
+              type="submit"
+              className={`mt-8 w-full py-6 text-xl font-semibold tablet:hidden ${
+                isFormValid
+                  ? "bg-primary-50 text-white"
+                  : "bg-grayscale-10 text-grayscale-40"
+              }`}
+            >
+              견적서 발급받기
+            </button>
           </form>
         </div>
       </FormProvider>
@@ -198,4 +270,4 @@ function AnimalInfoFormBox({ petType, onButtonClick }: AnimalInfoFormBoxProps) {
   );
 }
 
-export default AnimalInfoFormBox;
+export default PetInfoFormBox;

@@ -28,9 +28,9 @@ export default function PolicyModal({ detail, onClose }: PolicyModalProps) {
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
-      <div className="flex w-[536px] flex-col items-center gap-6 rounded-3xl bg-white p-10">
+      <div className="flex max-h-[80vh] w-[294px] max-w-[90vw] flex-col items-center gap-4 overflow-auto rounded-3xl bg-white p-6 tablet:w-[536px] tablet:gap-6 tablet:p-10">
         <div className="flex w-full items-center justify-between">
-          <span className="font-paperlogy-title text-3xl text-grayscale-100">
+          <span className="font-paperlogy-title text-xl text-grayscale-100 tablet:text-3xl">
             개인정보처리방침
           </span>
           <CloseIcon
@@ -38,7 +38,7 @@ export default function PolicyModal({ detail, onClose }: PolicyModalProps) {
             onClick={handleClose}
           />
         </div>
-        <p className="whitespace-pre-line text-xl font-regular text-grayscale-80">
+        <p className="whitespace-pre-line text-[14px] text-grayscale-80 tablet:text-xl tablet:font-regular">
           {detail}
         </p>
       </div>

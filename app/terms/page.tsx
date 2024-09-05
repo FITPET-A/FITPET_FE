@@ -1,6 +1,6 @@
 export default function TermsPage() {
   return (
-    <div className="mb-[104px] mt-8 flex flex-col gap-8 px-6 text-md font-medium text-grayscale-80">
+    <div className="mb-[104px] mt-8 flex flex-col gap-8 text-md font-medium text-grayscale-80">
       <section>
         <h2 className="text-xl font-semibold text-grayscale-100">
           제1조 (목적)
