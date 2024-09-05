@@ -1,20 +1,14 @@
+import { SearchIcon } from "@public/svg";
 import React from "react";
-import Image from "next/image";
 
 function SearchBar() {
   return (
     <div className="relative items-center">
-      <Image
-        alt="faq_search"
-        className="absolute left-5 top-[28px] z-0 -translate-y-1/2 transform"
-        src="/assets/faq_search.webp"
-        width={20}
-        height={20}
-      />
+      <SearchIcon className="absolute left-5 top-1/2 z-0 -translate-y-1/2 transform" />
       <input
         type="text"
         placeholder="무엇이 궁금하신가요?"
-        className="w-full rounded-[100px] bg-grayscale-00 px-12 py-4 text-grayscale-40"
+        className="w-full rounded-[100px] border-1 border-grayscale-10 bg-grayscale-00 px-12 py-4 text-md font-medium placeholder:text-grayscale-40"
       />
     </div>
   );

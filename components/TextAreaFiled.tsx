@@ -47,7 +47,9 @@ export default function TextAreaField({
         placeholder={placeholder}
       />
       {error && (
-        <p className="absolute -bottom-6 text-sm text-red-500">{error}</p>
+        <p className="absolute -bottom-6 hidden text-red-500 tablet:block tablet:text-sm">
+          {error}
+        </p>
       )}
     </div>
   );

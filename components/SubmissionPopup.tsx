@@ -32,17 +32,17 @@ export default function SubmissionPopup({
       }`}
     >
       <div
-        className="flex h-[536px] w-[536px] flex-col items-center rounded-3xl px-12"
+        className="flex h-[358px] w-[358px] flex-col items-center rounded-3xl px-6 tablet:h-[536px] tablet:w-[536px] tablet:px-12"
         style={{ background: "linear-gradient(180deg, #FFF 0%, #CDE8FF 100%)" }}
       >
         <CloseIcon
-          className="mt-10 cursor-pointer self-end stroke-primary-30"
+          className="mt-6 cursor-pointer self-end stroke-primary-30 tablet:mt-10"
           onClick={handleClose}
         />
-        <div className="font-paperlogy-heading text-[40px] text-primary-50">
+        <div className="mt-2 font-paperlogy-heading text-[28px] text-primary-50 tablet:mt-0 tablet:text-[40px]">
           {title}
         </div>
-        <div className="mt-2 font-paperlogy-title text-3xl text-primary-30">
+        <div className="mt-1 font-paperlogy-title text-base text-primary-30 tablet:mt-2 tablet:text-3xl">
           빠른 시일 내에 답변드리겠습니다!
         </div>
         <Image
@@ -50,7 +50,14 @@ export default function SubmissionPopup({
           src="/assets/DOG_submission.webp"
           width={401}
           height={413}
-          className="mt-[49px]"
+          className="mt-[49px] hidden tablet:flex"
+        />
+        <Image
+          alt="submission"
+          src="/assets/DOG_submission.webp"
+          width={246}
+          height={253}
+          className="mt-[33px] tablet:hidden"
         />
       </div>
     </div>

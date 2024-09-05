@@ -53,7 +53,7 @@ export default function PhoneNumberInput({
           id="phone1"
           value="010"
           readOnly
-          className="flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 focus:outline-primary-50 tablet:w-[80px] desktop:w-[120px]"
+          className="w-[56px] flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 focus:outline-primary-50 tablet:w-[80px] desktop:w-[120px]"
         />
         <span className="text-grayscale-60">-</span>
         <input
@@ -67,7 +67,7 @@ export default function PhoneNumberInput({
               message: errorMessages.pattern || "올바른 번호를 입력해주세요.",
             },
           })}
-          className={`flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
+          className={`w-[56px] flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
             errors?.phone2
               ? "outline outline-1 outline-red-500"
               : "focus:outline-primary-50"
@@ -86,7 +86,7 @@ export default function PhoneNumberInput({
               message: errorMessages.pattern || "올바른 번호를 입력해주세요.",
             },
           })}
-          className={`flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
+          className={`w-[56px] flex-grow rounded-xl bg-grayscale-05 p-4 text-center placeholder:text-grayscale-40 focus:outline focus:outline-1 tablet:w-[80px] desktop:w-[120px] ${
             errors?.phone3
               ? "outline outline-1 outline-red-500"
               : "focus:outline-primary-50"
@@ -95,7 +95,7 @@ export default function PhoneNumberInput({
         />
       </div>
       {(errors?.phone2 || errors?.phone3) && (
-        <p className="absolute -bottom-6 text-sm text-red-500">
+        <p className="absolute -bottom-6 hidden text-sm text-red-500 tablet:block">
           {errors?.phone2?.message?.toString() ||
             errors?.phone3?.message?.toString() ||
             ""}

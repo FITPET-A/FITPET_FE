@@ -53,15 +53,15 @@ export default function FAQPage() {
     useState<keyof FAQData>("가입조건");
 
   return (
-    <div className="mt-8 flex w-[1080px] flex-col px-6">
+    <div className="mt-8 flex flex-col">
       <SearchBar />
-
-      <div className="mt-6 flex space-x-2">
+      <div className="mt-6 flex flex-wrap gap-2 overflow-x-auto">
         {categories.map((category) => (
           <RoundButton
             key={category.label}
             label={category.label}
             isSelected={selectedCategory === category.label.split(" ")[1]}
+            hasMobileSize
             onClick={() =>
               setSelectedCategory(category.label.split(" ")[1] as keyof FAQData)
             }
