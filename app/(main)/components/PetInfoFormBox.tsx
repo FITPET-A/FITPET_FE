@@ -163,7 +163,7 @@ function PetInfoFormBox({ petType, onButtonClick }: PetInfoFormBoxProps) {
       <FormProvider {...methods}>
         <div className="z-10 mt-4 flex flex-col rounded-3xl bg-white pt-6 shadow-main-form tablet:mt-12 tablet:px-8 tablet:py-8 desktop:px-9">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex w-full justify-center space-x-4">
+            <div className="flex w-full justify-center space-x-4 tablet:justify-start">
               {animals.map((animal) => (
                 <RoundButton
                   key={animal.value}
@@ -173,7 +173,7 @@ function PetInfoFormBox({ petType, onButtonClick }: PetInfoFormBoxProps) {
                 />
               ))}
             </div>
-            <div className="grid-grid-cols-1 mt-6 grid gap-8 px-4 text-lg font-medium tablet:grid-cols-2 tablet:gap-10">
+            <div className="grid-grid-cols-1 mt-6 grid gap-8 px-4 text-lg font-medium tablet:grid-cols-2 tablet:gap-10 tablet:px-0">
               <InputField
                 id="name"
                 label="이름"
