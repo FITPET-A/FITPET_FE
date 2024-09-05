@@ -19,7 +19,7 @@ module.exports = {
         "type", // Custom type
         "rename", // Custom type
         "remove", // Custom type
-        "hot fix", // Custom type
+        "hotfix", // Custom type
       ],
     ],
   },
