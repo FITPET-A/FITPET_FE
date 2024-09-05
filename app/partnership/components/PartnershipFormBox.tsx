@@ -108,7 +108,7 @@ function PartnershipFormBox() {
       <FormProvider {...methods}>
         <div className="z-10 mt-4 flex flex-col overflow-hidden rounded-3xl bg-white pt-6 shadow-main-form tablet:mt-12 tablet:px-8 tablet:pb-8 tablet:pt-9 desktop:px-9">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="hidden grid-cols-2 gap-y-10 text-lg font-medium tablet:grid tablet:gap-x-8 desktop:gap-x-12">
+            <div className="grid grid-cols-1 gap-8 px-4 text-lg font-medium tablet:grid tablet:grid-cols-2 tablet:gap-x-8 tablet:gap-y-10 tablet:px-0 desktop:gap-x-12">
               <InputField
                 id="companyName"
                 label="기업명"
@@ -141,7 +141,7 @@ function PartnershipFormBox() {
                     phone3: errors.phone3,
                   }}
                 />
-                <div className="flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm desktop:text-md">
+                <div className="-14 hidden items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm tablet:flex desktop:text-md">
                   <CheckboxWithLabel
                     id="privacyConsent"
                     label="개인정보 수집 및 이용 동의"
@@ -166,62 +166,7 @@ function PartnershipFormBox() {
                 }}
                 error={errors.comment?.message?.toString()}
               />
-            </div>
-            <div className="mt-10 hidden w-full justify-center tablet:flex">
-              <button
-                type="submit"
-                className={`w-[360px] rounded-2xl py-4 text-xl font-medium ${
-                  isFormValid
-                    ? "bg-primary-50 text-white"
-                    : "bg-grayscale-10 text-grayscale-40"
-                }`}
-              >
-                제안 전송
-              </button>
-            </div>
-            <div className="mx-4 grid grid-cols-1 gap-8 text-lg font-medium tablet:hidden">
-              <InputField
-                id="companyName"
-                label="기업명"
-                required
-                placeholder="기업명을 알려주세요."
-                validation={{
-                  required: "기업명을 입력해주세요.",
-                }}
-                error={errors.companyName?.message?.toString()}
-              />
-              <InputField
-                id="email"
-                label="E-mail 주소"
-                type="email"
-                required
-                placeholder="example@sc.com"
-                validation={{
-                  required: "이메일 주소를 입력해주세요.",
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "유효한 이메일 주소를 입력해주세요.",
-                  },
-                }}
-                error={errors.email?.message?.toString()}
-              />
-              <PhoneNumberInput
-                errors={{
-                  phone2: errors.phone2,
-                  phone3: errors.phone3,
-                }}
-              />
-              <TextAreaField
-                id="comment"
-                label="제휴 문의 내용"
-                required
-                placeholder="제휴 문의 내용은 무엇인가요?"
-                validation={{
-                  required: "문의 내용을 입력해주세요",
-                }}
-                error={errors.comment?.message?.toString()}
-              />
-              <div className="flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm">
+              <div className="flex h-14 items-center justify-between rounded-xl bg-primary-00/25 px-6 py-4 text-sm tablet:hidden desktop:text-md">
                 <CheckboxWithLabel
                   id="privacyConsent"
                   label="개인정보 수집 및 이용 동의"
@@ -235,6 +180,18 @@ function PartnershipFormBox() {
                   약관 보기
                 </button>
               </div>
+            </div>
+            <div className="mt-10 hidden w-full justify-center tablet:flex">
+              <button
+                type="submit"
+                className={`w-[360px] rounded-2xl py-4 text-xl font-medium ${
+                  isFormValid
+                    ? "bg-primary-50 text-white"
+                    : "bg-grayscale-10 text-grayscale-40"
+                }`}
+              >
+                제안 전송
+              </button>
             </div>
             <button
               type="submit"
