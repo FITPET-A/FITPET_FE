@@ -24,4 +24,7 @@
   .custom-gradient-tablet {
     background: linear-gradient(to bottom, #008cff 464px, transparent 464px);
   }
+  .custom-gradient-mobile {
+    background: linear-gradient(to bottom, #008cff 276px, transparent 276px);
+  }
 }
