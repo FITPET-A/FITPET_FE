@@ -12,14 +12,16 @@ import KakaoIcon from "@public/svg/kakao.svg";
 import MessageIcon from "@public/svg/message.svg";
 
 import PhonePopup from "./PhonePopup";
+import InquiryModal from "./InquiryModal";
 
 function ContactButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showPhonePopup, setShowPhonePopup] = useState(false);
+  const [isPhonePopupOpen, setIsPhonePopupOpen] = useState(false);
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const router = useRouter();
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   // 모바일 환경 확인 함수 (모든 휴대폰 및 추가 애플 기기)
@@ -40,7 +42,7 @@ function ContactButton() {
           window.location.href = "tel:010-5738-1800";
         } else {
           // 데스크탑에서는 팝업을 띄움
-          setShowPhonePopup(true);
+          setIsPhonePopupOpen(true);
         }
         break;
       case "faq":
@@ -48,16 +50,19 @@ function ContactButton() {
         setIsOpen(false);
         break;
       case "contact":
-        alert("1:1 문의 창구입니다.");
+        setIsInquiryModalOpen(true);
         break;
       default:
         break;
     }
   };
 
-  // 팝업 닫기 함수
-  const closePopup = () => {
-    setShowPhonePopup(false);
+  const handleClosePopup = () => {
+    setIsPhonePopupOpen(false);
+  };
+
+  const handleInquiryModalClose = () => {
+    setIsInquiryModalOpen(false);
   };
 
   // 버튼 공통 스타일 변수 생성
@@ -66,11 +71,20 @@ function ContactButton() {
     "flex items-center justify-center rounded-3xl font-bold transition-transform duration-300";
 
   return (
-    <div className="relative">
-      {isOpen && <div className="fixed inset-0 z-40 bg-black bg-opacity-50" />}
-      {showPhonePopup && <PhonePopup onClose={closePopup} />}
-
-      <div className="fixed bottom-[80px] right-[128px] z-40">
+    <div>
+      {isOpen && (
+        <div
+          role="button"
+          aria-label="close button"
+          tabIndex={0}
+          onClick={toggleMenu}
+          onKeyDown={() => {}}
+          className="fixed inset-0 z-40 cursor-default bg-black bg-opacity-50"
+        />
+      )}
+      {isPhonePopupOpen && <PhonePopup onClose={handleClosePopup} />}
+      {isInquiryModalOpen && <InquiryModal onClose={handleInquiryModalClose} />}
+      <div className="absolute bottom-[80px] right-10 z-40 tablet:right-[60px] desktop:right-[128px]">
         <div className="relative">
           {/* 문의 버튼 */}
           <button
@@ -85,7 +99,7 @@ function ContactButton() {
 
           {/* 4가지 버튼 목록 */}
           <div
-            className={`absolute bottom-24 right-0 flex w-max flex-col items-end gap-6 text-xl font-semibold text-grayscale-80 transition-all ease-out ${
+            className={`absolute bottom-[130px] right-0 flex w-max flex-col items-end gap-6 text-xl font-semibold text-grayscale-80 transition-all ease-out ${
               isOpen ? "opacity-100" : "opacity-0"
             }`}
             style={{ transitionDuration: "400ms" }}
@@ -94,21 +108,21 @@ function ContactButton() {
               {
                 label: "1:1 문의",
                 type: "contact",
-                delay: "0.45s",
+                delay: "0.15s",
                 Icon: MessageIcon,
                 customStyle: "bg-grayscale-00 text-grayscale-80",
               },
               {
                 label: "전화 문의",
                 type: "phone",
-                delay: "0.3s",
+                delay: "0.1s",
                 Icon: CallIcon,
                 customStyle: "bg-grayscale-00 text-grayscale-80",
               },
               {
                 label: "자주 묻는 질문",
                 type: "faq",
-                delay: "0.15s",
+                delay: "0.05s",
                 customStyle: "bg-grayscale-00 text-grayscale-80",
               },
               {
