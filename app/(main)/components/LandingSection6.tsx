@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function LandingSection6() {
   return (
     // [영역 6] 전문가와의 1:1 카톡 상담 및 가입과 청구까지 걱정없이
-    <section className="relative flex flex-col items-center bg-grayscale-100 pb-[355px] pt-[259px]">
-      <div className="flex w-[1080px] flex-col space-y-10">
+    <section className="flex flex-col items-center bg-grayscale-100 pb-[355px] pt-[259px]">
+      <div className="flex w-[1080px] flex-col">
         <div className="flex items-center justify-between">
           <div className="text-left text-grayscale-00">
             <p className="font-paperlogy-heading text-[40px]">
