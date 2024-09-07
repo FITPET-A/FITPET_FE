@@ -14,6 +14,7 @@ export default function LifestylePage() {
       content:
         "아직까지 명확한 치료 가이드가 없는 심장, 신장 증후군.\n종류와 증상에 대해 구체적으로 알아봐요.",
       hashtags: ["#강아지", "#강아지 건강", "#수의사 칼럼"],
+      imageSrc: "/assets/lifestyle1.webp",
     },
     {
       key: "2",
@@ -21,6 +22,7 @@ export default function LifestylePage() {
       content:
         "고백내장을 빨리 발견하기 위해선 보호자의 관심이 필요해요.\n강아지 백내장의 종류와 단계, 치료법과 주의점을 알아봐요.",
       hashtags: ["#강아지", "#강아지 건강", "#수의사 칼럼"],
+      imageSrc: "/assets/lifestyle2.webp",
     },
     {
       key: "3",
@@ -28,6 +30,7 @@ export default function LifestylePage() {
       content:
         "고양이는 특히 신장 질환에 취약한데요.\n치료 적기를 놓치기 쉬운 만성 신장 질환의 치료와 관리 방법 등을 알아봐요.",
       hashtags: ["#고양이", "#고양이 건강", "#수의사 칼럼"],
+      imageSrc: "/assets/lifestyle3.webp",
     },
   ];
 
@@ -73,6 +76,7 @@ export default function LifestylePage() {
             title={content.title}
             content={content.content}
             hashtags={content.hashtags}
+            imageSrc={content.imageSrc}
             onClick={() => handleContentClick(content.key)}
           />
         ))}

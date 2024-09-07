@@ -4,6 +4,7 @@ interface LifestyleContentProps {
   title: string;
   content: string;
   hashtags: string[];
+  imageSrc: string;
   onClick: () => void;
 }
 
@@ -11,6 +12,7 @@ export default function LifestyleContent({
   title,
   content,
   hashtags,
+  imageSrc,
   onClick,
 }: LifestyleContentProps) {
   return (
@@ -22,7 +24,7 @@ export default function LifestyleContent({
       <div className="mt-2 flex flex-grow flex-col justify-between gap-3 text-left tablet:gap-4">
         <div className="w-full tablet:hidden">
           <Image
-            src="/assets/example_contents.webp"
+            src={imageSrc}
             alt="Lifestyle Example Contents"
             className="rounded-3xl object-cover"
             width={1000}
@@ -46,7 +48,7 @@ export default function LifestyleContent({
       </div>
       <div className="flex-shrink-0">
         <Image
-          src="/assets/example_contents.webp"
+          src={imageSrc}
           alt="Lifestyle Example Contents"
           className="hidden rounded-3xl object-cover tablet:block"
           width={400}
