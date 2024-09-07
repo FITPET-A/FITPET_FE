@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function LandingSection3() {
   return (
-    <section className="mt-[284px] flex h-[529px] w-full flex-col items-center bg-primary-40">
+    <section className="mt-[284px] flex h-[529px] w-full flex-col items-center overflow-hidden bg-primary-40">
       <p className="mt-[105px] text-center font-paperlogy-heading text-[40px] text-grayscale-00">
         한눈에 비교하는 주요 보험사 견적
       </p>

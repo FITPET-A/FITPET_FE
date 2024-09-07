@@ -30,8 +30,8 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
-          <FloatingButton />
           <Footer />
+          <FloatingButton />
         </Providers>
       </body>
     </html>
