@@ -7,9 +7,9 @@ export default function LandingSection2() {
       <p className="mobile:text-[24px] text-center font-paperlogy-heading text-[40px] text-primary-50 tablet:text-[30px]">
         간단한 정보 입력만으로 부담없이
       </p>
-      <div className="mobile:mt-[30px] mt-[74px] flex w-full max-w-[1080px] flex-wrap justify-center gap-10 tablet:mt-[50px] tablet:flex-nowrap">
+      <div className="mobile:mt-[30px] mt-[74px] flex max-w-[1080px] flex-wrap justify-center gap-10 tablet:mt-[50px] tablet:flex-nowrap">
         {/* STEP1 */}
-        <div className="flex h-[423px] w-full max-w-[470px] flex-col items-center rounded-[20px] bg-primary-00 tablet:w-[470px]">
+        <div className="flex flex-col items-center rounded-[20px] bg-primary-00 tablet:h-[258px] tablet:w-[342px] desktop:h-[423px] desktop:w-[470px]">
           <p className="mobile:text-[18px] mt-[52px] rounded-lg bg-primary-50 px-10 py-2 text-center font-paperlogy-heading text-[24px] text-grayscale-00 tablet:text-[20px]">
             STEP 1
           </p>
@@ -28,7 +28,7 @@ export default function LandingSection2() {
         </div>
 
         {/* STEP2 */}
-        <div className="flex h-[423px] w-full max-w-[470px] flex-col items-center rounded-[20px] bg-primary-00 tablet:w-[470px]">
+        <div className="flex flex-col items-center rounded-[20px] bg-primary-00 tablet:h-[258px] tablet:w-[342px] desktop:h-[423px] desktop:w-[470px]">
           <p className="mobile:text-[18px] mt-[52px] rounded-lg bg-primary-50 px-10 py-2 text-center font-paperlogy-heading text-[24px] text-grayscale-00 tablet:text-[20px]">
             STEP 2
           </p>

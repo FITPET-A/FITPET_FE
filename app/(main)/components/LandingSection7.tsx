@@ -3,22 +3,22 @@ import Image from "next/image";
 export default function LandingSection7() {
   return (
     // [영역 7] 리뷰 및 선물
-    <section className="flex flex-col items-center bg-grayscale-15">
+    <section className="relative flex w-full flex-col items-center bg-grayscale-15">
+      <Image
+        src="/assets/DOG_smile.webp"
+        alt="Review 1 Top DOG Image"
+        width={248}
+        height={250}
+        className="absolute left-[437px] top-[175px] z-0"
+      />
       <p className="pt-[202px] text-center font-paperlogy-heading text-[40px] text-grayscale-100">
         반려인들의 <br />
         실제 리뷰를 확인해보세요
       </p>
-      <div className="z-10 mt-[72px] flex space-x-[24px]">
+      <div className="mt-[72px] flex space-x-[24px]">
         {/* 리뷰 1 */}
         <div className="relative flex h-[268px] w-[328px] flex-col rounded-2xl bg-grayscale-00 px-6 py-5 font-paperlogy-title shadow-lg">
-          <Image
-            src="/assets/DOG_smile.webp"
-            alt="Review 1 Top DOG Image"
-            width={248}
-            height={250.17}
-            className="absolute -top-[220px] left-0 z-0"
-          />
-          <div className="relative flex flex-col items-start">
+          <div className="z-10 flex flex-col items-start">
             <Image
               src="/assets/star_review.webp"
               alt="Star Review"
@@ -100,7 +100,7 @@ export default function LandingSection7() {
         <Image
           src="/assets/gift.webp"
           alt="Gift Image"
-          width={228.33}
+          width={228}
           height={220}
           className="relative left-[calc(50%-560px)]"
         />
@@ -111,8 +111,8 @@ export default function LandingSection7() {
         <Image
           src="/assets/DOG_gift.webp"
           alt="Dog Gift Image"
-          width={660.03}
-          height={497.55}
+          width={660}
+          height={498}
           className="mb-[245px] mt-[120px]"
         />
       </div>

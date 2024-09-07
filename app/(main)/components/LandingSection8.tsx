@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function LandingSection8() {
   return (
     // [영역 8] 우리가족의 행복을 위한 펫보험, 스마트커버인슈어런스가 함께할게요
-    <section className="relative flex flex-col items-center bg-primary-50">
+    <section className="relative flex w-full flex-col items-center bg-primary-50">
       <p className="relative pt-[100px] text-center font-paperlogy-heading text-[40px] text-grayscale-00">
         우리가족의 행복을 위한 펫보험, <br />
         스마트커버인슈어런스가 함께할게요

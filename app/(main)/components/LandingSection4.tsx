@@ -4,7 +4,7 @@ export default function LandingSection4() {
   return (
     // [영역 4] 복잡한 펫보험 정보도 알기 쉽게
 
-    <section className="flex flex-col items-center bg-grayscale-05 py-[183px]">
+    <section className="flex w-full flex-col items-center bg-grayscale-05 py-[183px]">
       <p className="font-paperlogy-heading text-[40px] text-grayscale-100">
         복잡한 펫보험 정보도 알기 쉽게
       </p>
