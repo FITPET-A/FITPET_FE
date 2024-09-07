@@ -82,7 +82,7 @@ function PetInfoFormBox({ petType, onButtonClick }: PetInfoFormBoxProps) {
       } else {
         setDebouncedBreed("");
       }
-    }, 300);
+    }, 100);
 
     return () => {
       clearTimeout(handler);

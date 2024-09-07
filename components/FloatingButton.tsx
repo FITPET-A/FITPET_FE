@@ -84,7 +84,7 @@ function ContactButton() {
       )}
       {isPhonePopupOpen && <PhonePopup onClose={handleClosePopup} />}
       {isInquiryModalOpen && <InquiryModal onClose={handleInquiryModalClose} />}
-      <div className="absolute bottom-[80px] right-10 z-40 tablet:right-[60px] desktop:right-[128px]">
+      <div className="fixed bottom-[80px] right-10 z-40 tablet:right-[60px] desktop:right-[128px]">
         <div className="relative">
           {/* 문의 버튼 */}
           <button
