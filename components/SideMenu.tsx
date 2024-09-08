@@ -36,7 +36,7 @@ function SideMenu({ isSideMenuOpen, onToggleMenu }: SideMenuProps) {
           isSideMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="mt-[55px] flex w-full flex-col pl-6 pr-4 tablet:mt-[47px] tablet:pr-6">
+        <div className="mt-6 flex w-full flex-col pl-6 pr-4 tablet:pr-6">
           <CloseIcon
             onClick={onToggleMenu}
             className="cursor-pointer self-end stroke-grayscale-60"

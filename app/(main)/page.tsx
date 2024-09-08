@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { PetType } from "@ctypes/main";
 import PetInfoFormBox from "./components/PetInfoFormBox";
-// import Landing from "./components/Landing";
 
 export default function MainPage() {
   const [petType, setPetType] = useState<PetType>("DOG");
@@ -45,7 +44,6 @@ export default function MainPage() {
         height={311}
       />
       <PetInfoFormBox petType={petType} onButtonClick={handleButtonClick} />
-      {/* <Landing /> */}
     </div>
   );
 }
