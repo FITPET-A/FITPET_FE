@@ -2,9 +2,8 @@ import Image from "next/image";
 
 export default function LandingSection1() {
   return (
-    // 바로 아래에서 설정한 mt 값도 수정해야함 (현재는 폼박스 없애고 파란색 배경보다 내려오게 설정 후 작업)
-    <section className="mt-[500px] flex w-full justify-center">
-      <div className="px-4 desktop:w-[1080px] desktop:px-0">
+    <section className="mt-[200px] flex w-full justify-center">
+      <div className="px-4 desktop:w-[1080px] desktop:px-6">
         <div className="flex flex-col tablet:items-end desktop:flex-row desktop:items-center desktop:justify-between">
           <div className="tablet:w-[543px]">
             <h2 className="font-paperlogy-heading text-[24px] text-grayscale-100 desktop:text-[40px]">

@@ -73,30 +73,32 @@ export default function LandingSection3() {
   }, []);
 
   return (
-    <section className="mt-[284px] flex h-auto min-h-[529px] w-full flex-col items-center overflow-hidden bg-primary-40 py-[105px]">
-      <p className="text-center font-paperlogy-heading text-[24px] text-grayscale-00 desktop:text-[40px]">
+    <section className="mt-[100px] flex h-auto w-full flex-col items-center overflow-hidden bg-primary-40 py-10 desktop:mt-[164px] desktop:py-16">
+      <p className="mt-2 text-center font-paperlogy-heading text-[24px] text-grayscale-00 desktop:text-[40px]">
         한눈에 비교하는 주요 보험사 견적
       </p>
-      <div className="mt-[87px] w-full overflow-hidden">
+      <div className="mt-8 w-full overflow-hidden desktop:mt-[87px]">
         <div ref={scrollRef} className="flex gap-8 whitespace-nowrap">
-          {[...insuranceCompanies, ...insuranceCompanies].map(
-            (company, index) => (
-              <div
-                key={`${company.id}-${company.name}-${index % insuranceCompanies.length}`}
-                className="inline-flex h-[108px] w-[240px] shrink-0 items-center justify-center rounded-[20px] bg-grayscale-00 desktop:w-[371px]"
-              >
-                <div className="relative h-full w-full">
-                  <Image
-                    src={company.src}
-                    alt={company.name}
-                    layout="fill"
-                    objectFit="contain"
-                    className="p-4"
-                  />
-                </div>
+          {[
+            ...insuranceCompanies,
+            ...insuranceCompanies,
+            ...insuranceCompanies,
+          ].map((company, index) => (
+            <div
+              key={`${company.id}-${company.name}-${index % insuranceCompanies.length}`}
+              className="inline-flex h-[86px] w-[192px] shrink-0 items-center justify-center rounded-[20px] bg-grayscale-00 desktop:w-[320px]"
+            >
+              <div className="relative h-full w-full">
+                <Image
+                  src={company.src}
+                  alt={company.name}
+                  layout="fill"
+                  objectFit="contain"
+                  className="p-4"
+                />
               </div>
-            ),
-          )}
+            </div>
+          ))}
         </div>
       </div>
     </section>
