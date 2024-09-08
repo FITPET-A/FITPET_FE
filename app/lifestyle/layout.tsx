@@ -7,7 +7,7 @@ export default function LifestyleLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex min-h-[calc(100vh-440px)] flex-col items-center bg-grayscale-00 tablet:min-h-[calc(100vh-448px)]">
+    <section className="flex min-h-[calc(100vh-440px)] flex-col items-center bg-grayscale-00 pb-[104px] tablet:min-h-[calc(100vh-448px)]">
       <div className="flex h-[186px] w-full justify-center bg-primary-50 tablet:h-[264px] desktop:h-[284px]">
         <div className="w-[1080px] px-4 tablet:px-6">
           <div className="mt-[72px] flex justify-between tablet:mt-[96px] desktop:mt-[116px]">

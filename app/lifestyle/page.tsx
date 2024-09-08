@@ -69,7 +69,7 @@ export default function LifestylePage() {
       </div>
 
       {/* 반려생활 콘텐츠 */}
-      <div className="mb-10 flex flex-col gap-6 tablet:gap-10">
+      <div className="flex flex-col gap-6 tablet:gap-10">
         {contents.map((content) => (
           <LifestyleContent
             key={content.key}

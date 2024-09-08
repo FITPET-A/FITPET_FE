@@ -204,7 +204,7 @@ function PetInfoFormBox({ petType, onButtonClick }: PetInfoFormBoxProps) {
               <InputField
                 id="condition"
                 label="반려동물 상태"
-                placeholder="수술 이력 등이 있나요?"
+                placeholder="건강상태 등을 알려주세요."
                 maxLength={30}
               />
               <PhoneNumberInput

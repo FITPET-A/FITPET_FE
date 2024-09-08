@@ -40,10 +40,10 @@ export default function PhoneNumberInput({
         {showDescription && (
           <div>
             <p className="hidden text-sm text-grayscale-40 desktop:block">
-              전화번호를 입력하면 문자로 견적서를 받을 수 있어요
+              전화번호를 입력하면 카카오톡으로 견적서를 받을 수 있어요
             </p>
             <p className="text-sm text-grayscale-40 desktop:hidden">
-              문자로 견적서를 보내드려요!
+              카카오톡으로 견적서를 보내드려요!
             </p>
           </div>
         )}

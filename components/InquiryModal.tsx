@@ -151,7 +151,6 @@ export default function InquiryModal({ onClose }: InquiryModalProps) {
                     error={errors.email?.message?.toString()}
                   />
                   <PhoneNumberInput
-                    required
                     errors={{
                       phone2: errors.phone2,
                       phone3: errors.phone3,
