@@ -40,6 +40,10 @@ export default function RootLayout({
           sizes="16x16"
           href="/favicon-16x16.png"
         />
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
       </head>
       <body className="min-w-[390px] font-pretendard font-medium desktop:min-w-[1080px]">
         <Providers>
